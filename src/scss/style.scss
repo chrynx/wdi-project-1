@@ -1,3 +1,126 @@
+* {
+box-sizing: border-box;
+}
 body {
-  background: aqua;
+  background-color: black;
+  color: white;
+}
+img {
+  max-width: 100%;
+}
+main {
+  border: 1px solid white;
+  width: 1500px;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: block;
+}
+/*=====================CLASSES INSIDE GAME=========================*/
+/*=====================TOP PART OF THE GAME========================*/
+.topSpacer{
+  border: 1px solid white;
+  clear: both;
+  width: auto;
+  padding: 50px 0;
+}
+/*===================MIDDLE PART OF THE GAME=======================*/
+.centerArea {
+  display: flex;
+}
+/*=====================LEFT SIDE OF THE GAME======================*/
+.leftFiller{
+  border: 1px solid white;
+  width: 10%;
+  padding: 220px 0;
+}
+.leftCharacter{
+  border: 1px solid white;
+  width: 27.5%;
+  background-color: lightSlateGrey;
+}
+.leftPhoto{
+}
+.leftName{
+}
+.leftHP{
+}
+.leftAV{
+}
+.leftDV{
+}
+.leftButtons{
+}
+.leftAttackButton{
+}
+.leftChargeButton{
+}
+.leftEscapeButton{
+}
+/*==================MIDDLE PART OF THE GAME==========================*/
+.middleArea {
+  width: 35%;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.leftHP{
+  border: 1px solid white;
+  height 20%;
+  background-color: green;
+  padding: 20px;
+}
+.middleFiller{
+  border: 1px solid white;
+
+  padding: 100px 0;
+}
+.rightHP{
+  border: 1px solid white;
+  background-color: red;
+  padding: 20px;
+}
+/*======================RIGHT PART OF THE GAME=========================*/
+.rightCharacter{
+  width: 27.5%;
+  border: 1px solid white;
+  background-color: lightSlateGrey;
+}
+.leftPhoto{
+}
+.leftName{
+}
+.leftHP{
+}
+.leftAV{
+}
+.leftDV{
+}
+.leftButtons{
+}
+.leftAttackButton{
+}
+.leftChargeButton{
+}
+.leftEscapeButton{
+}
+.rightFiller{
+  width: 10%;
+  border: 1px solid white;
+  padding: 220px 0;
+}
+/*===================BOTTOM PART OF THE GAME===========================*/
+.bottomSpacer{
+  display: block;
+  clear: both;
+  border: 1px solid white;
+  width: 100%;
+  padding: 50px 0;
+}
+/*=====================================================================*/
+header {
+  border: 1px solid white;
+}
+footer {
+  border: 1px solid white;
 }
