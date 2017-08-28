@@ -63,6 +63,27 @@ $(() => {
     $leftChargeButton.prop('disabled', true);
     $leftEscapeButton.prop('disabled', true);
   }
+  function resetAll() {
+    $leftHPBar.css('background-color', 'green');
+    $leftHPBar.css('border', '5px solid white');
+    $rightHPBar.css('background-color', 'green');
+    $rightHPBar.css('border', '5px solid white');
+    $leftPhoto.css('background', 'url(\'/images/david-hasselhoff.jpg\')');
+    disableRightButtons();
+    $leftHPValue = $('.leftHPValue').text();
+    $leftAVValue = $('.leftAVValue').text();
+    $rightHPValue = $('.rightHPValue').text();
+    $rightAVValue = $('.rightAVValue').text();
+    $rightPhoto.css('background', 'url(\'/images/nicolas-cage.jpg\')');
+
+    $leftHPBar.css('width', `${$leftHPWidth}px`);
+    $leftAttackBar.css('width', `${$leftAttackWidth}px`);
+    $leftDefBar.css('width', `${$leftDefWidth}px`);
+    $rightHPBar.css('width', `${$rightHPWidth}px`);
+    $rightAttackBar.css('width', `${$rightAttackWidth}px`);
+    $rightDefBar.css('width', `${$rightDefWidth}px`);
+
+  }
   // =======================ACTIONS=====================
   disableRightButtons();
   $leftHPBar.css('width', `${$leftHPWidth}px`);
@@ -90,10 +111,9 @@ $(() => {
   });
   function rightCharLost() {
     $rightHPBar.css('width', '450px');
-    $rightHPBar.css('background-color', 'black');
     $rightHPBar.css('border', 'none');
+    $rightPhoto.css('background', 'url(\'/images/you-lose.jpg\')');
   }
-
   $leftChargeButton.on('click', () => {
     console.log('left charge');
     disableLeftButtons();
@@ -107,13 +127,11 @@ $(() => {
       $leftAttackBar.css('width', `${doubleAttack}px`);
     }
   });
-
   $leftEscapeButton.on('click', () => {
     console.log('left escape');
     disableButtons();
     $leftPhoto.css('background-image', 'url(\'../src/images/you-lose.jpg\')');
   });
-
   // ==================RIGHT BUTTONS====================
   $rightAttackButton.on('click', () => {
     console.log('right attack');
@@ -130,6 +148,7 @@ $(() => {
     $leftHPBar.css('width', '450px');
     $leftHPBar.css('background-color', 'black');
     $leftHPBar.css('border', 'none');
+    $leftPhoto.css('background', 'url(\'/images/you-lose.jpg\')');
   }
   $rightChargeButton.on('click', () => {
     console.log('right charge');
@@ -144,31 +163,12 @@ $(() => {
       $rightAttackBar.css('width', `${doubleAttack}px`);
     }
   });
-
   $rightEscapeButton.on('click', () => {
     console.log('right escape');
     disableButtons();
     $leftPhoto.css('background-image', 'url(\'../src/images/you-lose.jpg\')');
   });
-  function resetAll() {
-    $leftHPBar.css('background-color', 'green');
-    $leftHPBar.css('border', '5px solid white');
-    $rightHPBar.css('background-color', 'green');
-    $rightHPBar.css('border', '5px solid white');
-    disableRightButtons();
-    $leftHPValue = $('.leftHPValue').text();
-    $leftAVValue = $('.leftAVValue').text();
-    $rightHPValue = $('.rightHPValue').text();
-    $rightAVValue = $('.rightAVValue').text();
 
-    $leftHPBar.css('width', `${$leftHPWidth}px`);
-    $leftAttackBar.css('width', `${$leftAttackWidth}px`);
-    $leftDefBar.css('width', `${$leftDefWidth}px`);
-    $rightHPBar.css('width', `${$rightHPWidth}px`);
-    $rightAttackBar.css('width', `${$rightAttackWidth}px`);
-    $rightDefBar.css('width', `${$rightDefWidth}px`);
-
-  }
   $resetButton.on('click', resetAll);
 
 
