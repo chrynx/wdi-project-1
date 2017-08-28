@@ -1,5 +1,7 @@
 $(() => {
   // ==================VARIABLES========================
+  const $rightImg = $('.rightImg');
+  const $leftImg = $('.leftImg');
   const $leftPhoto = $('.leftPhoto');
   let $leftHPValue = parseInt($('.leftHPValue').text());
   let $leftAVValue = parseInt($('.leftAVValue').text());
@@ -64,25 +66,27 @@ $(() => {
     $leftEscapeButton.prop('disabled', true);
   }
   function resetAll() {
-    $leftHPBar.css('background-color', 'green');
-    $leftHPBar.css('border', '5px solid white');
-    $rightHPBar.css('background-color', 'green');
-    $rightHPBar.css('border', '5px solid white');
-    $leftPhoto.css('background', 'url(\'/images/david-hasselhoff.jpg\')');
     disableRightButtons();
     $leftHPValue = $('.leftHPValue').text();
     $leftAVValue = $('.leftAVValue').text();
     $rightHPValue = $('.rightHPValue').text();
     $rightAVValue = $('.rightAVValue').text();
-    $rightPhoto.css('background', 'url(\'/images/nicolas-cage.jpg\')');
-
     $leftHPBar.css('width', `${$leftHPWidth}px`);
     $leftAttackBar.css('width', `${$leftAttackWidth}px`);
     $leftDefBar.css('width', `${$leftDefWidth}px`);
     $rightHPBar.css('width', `${$rightHPWidth}px`);
     $rightAttackBar.css('width', `${$rightAttackWidth}px`);
     $rightDefBar.css('width', `${$rightDefWidth}px`);
+    $rightImg.attr('src', 'http://iruntheinternet.com/lulzdump/images/nicolas-cage-fells-good-con-air-head-space-1409843288n.gif?id=');
+    $leftImg.attr('src', 'http://31.media.tumblr.com/9afa643a997c615f0633199661819855/tumblr_mhxm0g4eRf1qicagco1_400.gif');
 
+  }
+  function rightCharLost() {
+    $rightImg.attr('src', 'https://m.popkey.co/ed604e/b0vK1_s-200x150.gif?c=popkey-web&p=usa_network&i=suits-ent&l=search&f=.gif');
+    $leftImg.attr('src', 'http://vignette2.wikia.nocookie.net/injusticegodsamongus/images/c/c3/I_win.gif/revision/latest?cb=20131113025857');
+  }
+  function leftCharLost() {
+    $leftImg.attr('src', 'https://m.popkey.co/d5de5c/Aopkv.gif');   $rightImg.attr('src', 'http://img3.wikia.nocookie.net/__cb20131216201832/vampirediaries/images/a/a6/Winning-Tom-Hiddleston.gif');
   }
   // =======================ACTIONS=====================
   disableRightButtons();
@@ -101,19 +105,10 @@ $(() => {
     const remainingHP = $rightHPValue * 45;
     $rightHPBar.css('width', `${remainingHP}px`);
     if($rightHPValue <= 0){
-      $rightHPBar.css('width', '450px');
-      $rightHPBar.css('background-color', 'black');
-      $rightHPBar.css('border', 'none');
-      $rightPhoto.css('background', 'url(\'../src/images/you-lose.jpg\')');
       disableButtons();
       rightCharLost();
     }
   });
-  function rightCharLost() {
-    $rightHPBar.css('width', '450px');
-    $rightHPBar.css('border', 'none');
-    $rightPhoto.css('background', 'url(\'/images/you-lose.jpg\')');
-  }
   $leftChargeButton.on('click', () => {
     console.log('left charge');
     disableLeftButtons();
@@ -130,7 +125,7 @@ $(() => {
   $leftEscapeButton.on('click', () => {
     console.log('left escape');
     disableButtons();
-    $leftPhoto.css('background-image', 'url(\'../src/images/you-lose.jpg\')');
+    leftCharLost();
   });
   // ==================RIGHT BUTTONS====================
   $rightAttackButton.on('click', () => {
@@ -144,12 +139,6 @@ $(() => {
       disableButtons();
     }
   });
-  function leftCharLost() {
-    $leftHPBar.css('width', '450px');
-    $leftHPBar.css('background-color', 'black');
-    $leftHPBar.css('border', 'none');
-    $leftPhoto.css('background', 'url(\'/images/you-lose.jpg\')');
-  }
   $rightChargeButton.on('click', () => {
     console.log('right charge');
     disableRightButtons();
@@ -166,7 +155,7 @@ $(() => {
   $rightEscapeButton.on('click', () => {
     console.log('right escape');
     disableButtons();
-    $leftPhoto.css('background-image', 'url(\'../src/images/you-lose.jpg\')');
+    rightCharLost();
   });
 
   $resetButton.on('click', resetAll);
