@@ -9,118 +9,297 @@ img {
   max-width: 100%;
 }
 main {
-  border: 1px solid white;
   width: 1500px;
   max-width: 1500px;
   margin: 0 auto;
   display: block;
 }
+
 /*=====================CLASSES INSIDE GAME=========================*/
+
 /*=====================TOP PART OF THE GAME========================*/
+
 .topSpacer{
-  border: 1px solid white;
   clear: both;
   width: auto;
-  padding: 50px 0;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around;
 }
+.leftPlayerName{
+  font-size: 50px;
+  font-family: cursive;
+  text-align: left;
+  width: 100% / 3;
+}
+.topSpacerMiddleFiller{
+  width: 100% / 3;
+}
+.rightPlayerName{
+  font-size: 50px;
+  font-family: cursive;
+  text-align: right;
+  width: 100% / 3;
+}
+
 /*===================MIDDLE PART OF THE GAME=======================*/
+
 .centerArea {
   display: flex;
 }
+
 /*=====================LEFT SIDE OF THE GAME======================*/
+
 .leftFiller{
-  border: 1px solid white;
   width: 10%;
   padding: 220px 0;
 }
+
+// =====================LEFT CHARACTER==============================
+
 .leftCharacter{
-  border: 1px solid white;
+  border: 5px solid green;
   width: 27.5%;
   background-color: lightSlateGrey;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  font-size: 25px;
 }
 .leftPhoto{
+  background: url('http://place-hoff.com/340/340');
+  border: 3px solid black;
+  margin: 15px 0 auto 15px;
+  width: 340px;
+  height: 340px;
 }
 .leftName{
+    margin: 10px;
+    text-align: center;
+    border: 2px solid black;
+}
+.leftStats{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  border: 2px solid black;
 }
 .leftHP{
+  margin: auto 10px;
+}
+.leftHPValue{
+  margin: auto 10px;
 }
 .leftAV{
+    margin: auto 10px;
+}
+.leftAVValue{
+  margin: auto 10px;
 }
 .leftDV{
+    margin: auto 10px;
+}
+.leftDVValue{
+  margin: auto 10px;
 }
 .leftButtons{
+    margin: 15px 10px;
+    display: flex;
+    justify-content: space-around;
 }
 .leftAttackButton{
+  height: 30px;
+  width: 70px;
+  border: 3px solid black;
 }
 .leftChargeButton{
+  height: 30px;
+  width: 70px;
+  border: 3px solid black;
 }
 .leftEscapeButton{
+  height: 30px;
+  width: 70px;
+  border: 3px solid black;
 }
+
+// ============================================================
+
+
 /*==================MIDDLE PART OF THE GAME==========================*/
+
 .middleArea {
   width: 35%;
-  border: 1px solid white;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-.leftHP{
-  border: 1px solid white;
-  height 20%;
-  background-color: green;
-  padding: 20px;
-}
-.middleFiller{
-  border: 1px solid white;
 
-  padding: 100px 0;
+// ========================LEFT HP BAR==============================
+
+.leftHPBar{
+  border: 5px solid white;
+  background-color: green;
+  padding: 20px 0;
+  width: 450px;
 }
-.rightHP{
-  border: 1px solid white;
+.leftAttackBar{
+  border: 5px solid white;
   background-color: red;
-  padding: 20px;
+  padding: 20px 0;
+  width: 300px;
 }
+.leftDefBar{
+  border: 5px solid white;
+  background-color: brown;
+  padding: 20px 0;
+  width: 150px;
+}
+
+// =======================================================================
+
+.middleFiller{
+  text-align: center;
+  font-family: cursive;
+  font-size: 100px;
+  padding: 10px 0;
+}
+
+// =======================RIGHT HP BAR==================================
+
+.rightHPBar{
+  border: 5px solid white;
+  background-color: green;
+  padding: 20px 0;
+  width: 400px;
+  align-self: flex-end;
+}
+.rightAttackBar{
+  border: 5px solid white;
+  background-color: red;
+  padding: 20px 0;
+  width: 300px;
+  align-self: flex-end;
+}
+.rightDefBar{
+  border: 5px solid white;
+  background-color: brown;
+  padding: 20px 0;
+  width: 150px;
+  align-self: flex-end;
+}
+
 /*======================RIGHT PART OF THE GAME=========================*/
+
+// =======================RIGHT CHARACTER================================
+
 .rightCharacter{
   width: 27.5%;
-  border: 1px solid white;
+  border: 5px solid red;
   background-color: lightSlateGrey;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  font-size: 25px;
 }
-.leftPhoto{
+.rightPhoto{
+  background: url('http://placecage.com/340/340');
+  border: 3px solid black;
+  margin: 15px 15px auto 0;
+  width: 340px;
+  height: 340px;
+  align-self: flex-end;
 }
-.leftName{
+.rightName{
+  margin: 10px;
+  text-align: center;
+  border: 2px solid black;
 }
-.leftHP{
+.rightStats{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  border: 2px solid black;
 }
-.leftAV{
+.rightHP{
+  margin: auto 10px;
 }
-.leftDV{
+.rightHPValue{
+  margin: auto 10px;
 }
-.leftButtons{
+.rightAV{
+  margin: auto 10px;
 }
-.leftAttackButton{
+.rightAVValue{
+  margin: auto 10px;
 }
-.leftChargeButton{
+.rightDV{
+  margin: auto 10px;
 }
-.leftEscapeButton{
+.rightDVValue{
+  margin: auto 10px;
 }
+.rightButtons{
+  margin: 15px 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.rightAttackButton{
+  height: 30px;
+  width: 70px;
+  border: 3px solid black;
+}
+.rightChargeButton{
+  height: 30px;
+  width: 70px;
+  border: 3px solid black;
+}
+.rightEscapeButton{
+  height: 30px;
+  width: 70px;
+  border: 3px solid black;
+}
+
+// ==================================================================
+
 .rightFiller{
   width: 10%;
-  border: 1px solid white;
   padding: 220px 0;
 }
+
 /*===================BOTTOM PART OF THE GAME===========================*/
+
 .bottomSpacer{
-  display: block;
+  display: flex;
   clear: both;
-  border: 1px solid white;
   width: 100%;
-  padding: 50px 0;
+  text-align: center;
+  padding-top: 10px;
+  height: 100px;
+}
+.bottomSpacerLeft{
+  width: 10%;
+}
+.bottomSpacerLeftChar{
+  width: 27.5%;
+  font-family: cursive;
+}
+.bottomSpacerMiddle{
+  width: 35%;
+}
+.bottomSpacerRightChar{
+  width: 27.5%;
+  font-family: cursive;
+}
+.bottomSpacerRight{
+  width: 10%;
 }
 /*=====================================================================*/
+
 header {
-  border: 1px solid white;
+  text-align: center;
 }
 footer {
-  border: 1px solid white;
+  text-align: center;
+  font-size: 50px;
 }
