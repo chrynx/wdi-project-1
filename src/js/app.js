@@ -2,7 +2,7 @@ $(() => {
   // ==================VARIABLES========================
   const $rightImg = $('.rightImg');
   const $leftImg = $('.leftImg');
-  const $leftPhoto = $('.leftPhoto');
+  // const $leftPhoto = $('.leftPhoto');
   let $leftHPValue = parseInt($('.leftHPValue').text());
   let $leftAVValue = parseInt($('.leftAVValue').text());
   const $leftDVValue = parseInt($('.leftDVValue').text());
@@ -16,7 +16,7 @@ $(() => {
   const $rightHPBar = $('.rightHPBar');
   const $rightAttackBar = $('.rightAttackBar');
   const $rightDefBar = $('.rightDefBar');
-  const $rightPhoto = $('.rightPhoto');
+  // const $rightPhoto = $('.rightPhoto');
   let $rightHPValue = parseInt($('.rightHPValue').text());
   let $rightAVValue = parseInt($('.rightAVValue').text());
   const $rightDVValue = parseInt($('.rightDVValue').text());
@@ -81,11 +81,11 @@ $(() => {
     $leftImg.attr('src', 'http://31.media.tumblr.com/9afa643a997c615f0633199661819855/tumblr_mhxm0g4eRf1qicagco1_400.gif');
 
   }
-  function rightCharLost() {
+  function leftCharLost() {
     $rightImg.attr('src', 'https://m.popkey.co/ed604e/b0vK1_s-200x150.gif?c=popkey-web&p=usa_network&i=suits-ent&l=search&f=.gif');
     $leftImg.attr('src', 'http://vignette2.wikia.nocookie.net/injusticegodsamongus/images/c/c3/I_win.gif/revision/latest?cb=20131113025857');
   }
-  function leftCharLost() {
+  function rightCharLost() {
     $leftImg.attr('src', 'https://m.popkey.co/d5de5c/Aopkv.gif');   $rightImg.attr('src', 'http://img3.wikia.nocookie.net/__cb20131216201832/vampirediaries/images/a/a6/Winning-Tom-Hiddleston.gif');
   }
   // =======================ACTIONS=====================

@@ -63,10 +63,10 @@ main {
 }
 .leftName{
   color: white;
-    margin: 10px;
-    text-align: center;
-    border: 2px solid black;
-    background: url('/images/stats-bar.jpg');
+  margin: 10px;
+  text-align: center;
+  border: 2px solid black;
+  background: url('/images/stats-bar.jpg');
 }
 .leftStats{
   color: white;
@@ -138,6 +138,7 @@ main {
 .leftHPBar{
   background: url('/images/health-bar.jpg');
   padding: 20px 0;
+  max-width: 450px;
 }
 .leftAttackBar{
   background: url('/images/attack-bar.jpg');
@@ -163,6 +164,7 @@ main {
 .rightHPBar{
   background: url('/images/health-bar.jpg');
   padding: 20px 0;
+  max-width: 450px;
   align-self: flex-end;
 }
 .rightAttackBar{
