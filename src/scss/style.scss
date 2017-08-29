@@ -94,6 +94,12 @@ main {
 .leftDVValue{
   margin: auto 10px;
 }
+.leftHV{
+  margin: auto 10px;
+}
+.leftHVValue{
+  margin: auto 10px;
+}
 .leftButtons{
     margin: 15px 10px;
     display: flex;
@@ -113,7 +119,7 @@ main {
   background: url('/images/buttons.jpg');
   border-radius: 10px;
 }
-.leftEscapeButton{
+.leftHealButton{
   height: 30px;
   width: 70px;
   color: white;
@@ -138,7 +144,6 @@ main {
 .leftHPBar{
   background: url('/images/health-bar.jpg');
   padding: 20px 0;
-  max-width: 450px;
 }
 .leftAttackBar{
   background: url('/images/attack-bar.jpg');
@@ -146,6 +151,10 @@ main {
 }
 .leftDefBar{
   background: url('/images/defense-bar.jpg');
+  padding: 20px 0;
+}
+.leftHealBar{
+  background: url('/images/heal-bar.jpg');
   padding: 20px 0;
 }
 
@@ -174,6 +183,11 @@ main {
 }
 .rightDefBar{
   background: url('/images/defense-bar.jpg');
+  padding: 20px 0;
+  align-self: flex-end;
+}
+.rightHealBar{
+  background: url('/images/heal-bar.jpg');
   padding: 20px 0;
   align-self: flex-end;
 }
@@ -239,6 +253,12 @@ main {
 .rightDVValue{
   margin: auto 10px;
 }
+.rightHV{
+  margin: auto 10px;
+}
+.rightHVValue{
+  margin: auto 10px;
+}
 .rightButtons{
   margin: 15px 10px;
   display: flex;
@@ -258,7 +278,7 @@ main {
   background: url('/images/buttons.jpg');
   border-radius: 10px;
 }
-.rightEscapeButton{
+.rightHealButton{
   height: 30px;
   width: 70px;
   color: white;
