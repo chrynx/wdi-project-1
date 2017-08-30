@@ -279,13 +279,10 @@ $(() => {
     $rightDefBar.css('width', '0px');
     $rightHealBar.css('width', '0px');
   }
-  function healValue(HPval, HVval){
-    HPval = HPval + HVval;
-  }
   // ================PLAYER FUNCTIONS==============
   function playerAttack(){
     attackSound();
-    $leftLights.css('background-color', 'red');
+    setLeftLights('red');
     if((leftAVValue - rightDVValue) > 0){
       leftAttack();
       rightHPValue = rightHPValue - (leftAVValue - rightDVValue);
@@ -327,7 +324,7 @@ $(() => {
   function playerHeal(){
     healSound();
     setLeftLights('green');
-    healValue(leftHPValue, leftHVValue);
+    leftHPValue = leftHPValue + leftHVValue;
     leftHeal();
     if(leftHPValue > 10){
       leftHPValue = 10;
@@ -342,10 +339,14 @@ $(() => {
   // ==================HOFF FUNCTIONS==================
   function hoffTurn() {
     if(rightHPValue > 0){
-      if(rightHPValue < 6) hoffHeal();
-      if(rightAVValue === 10) hoffAttack();
-      else hoffCharge();
-    } else {
+      if(rightHPValue < 6){
+        hoffHeal();
+      }else if(rightAVValue === 10){
+        hoffAttack();
+      }else {
+        hoffCharge();
+      }
+    }else {
       rightCharText('THE HOFF HAS LOST!');
     }
   }
@@ -393,7 +394,7 @@ $(() => {
   function hoffHeal(){
     healSound();
     setRightLights('green');
-    healValue(rightHPValue, rightHVValue);
+    rightHPValue = rightHPValue + rightHVValue;
     rightHeal();
     if(rightHPValue > 10){
       rightHPValue = 10;
