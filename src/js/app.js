@@ -25,7 +25,7 @@ $(() => {
   const davidHasselhoff = {
     name: 'David Hasselhoff',
     HP: 10,
-    AV: 5,
+    AV: 4,
     DV: 4,
     HV: 4,
     image: '/images/david-hasselhoff.gif'
@@ -44,9 +44,13 @@ $(() => {
   const $rightDefBar = $('.rightDefBar');
   const $rightHealBar = $('.rightHealBar');
   const $rightImg = $('.rightImg');
+  const $rightHP = $('.rightHP');
   const $rightHPValue = $('.rightHPValue');
+  const $rightAV = $('.rightAV');
   const $rightAVValue = $('.rightAVValue');
+  const $rightDV = $('.rightDV');
   const $rightDVValue = $('.rightDVValue');
+  const $rightHV = $('.rightHV');
   const $rightHVValue = $('.rightHVValue');
   const $rightName = $('.rightName');
   const $bottomLeftChar = $('.bottomSpacerLeftChar');
@@ -101,6 +105,7 @@ $(() => {
     else norrisIsAlive = true;
   }
   function releaseChuckNorris(){
+    norrisIsAlive = false;
     $rightImg.attr('src', chuckNorris.image);
     $rightName.text(chuckNorris.name);
     rightHPValue = chuckNorris.HP;
@@ -115,6 +120,14 @@ $(() => {
     $rightAttackBar.css('width', `${chuckNorris.AV * 45}`);
     $rightDefBar.css('width', `${chuckNorris.DV * 45}`);
     $rightHealBar.css('width', `${chuckNorris.HV * 45}`);
+    $rightHP.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightAV.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightDV.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightHV.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightHPValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightAVValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightDVValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    $rightHVValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
   }
   function leftCharLost() {
     $leftImg.attr('src', '/images/player-lose.gif');
@@ -184,14 +197,12 @@ $(() => {
     if(rightHPValue > 0){
       if(rightHPValue <= 5){
         hoffHeal();
-      } else if(rightAVValue < 4){
+      } else if(rightAVValue <= 4 && rightHPValue > 8){
+        hoffCharge();
+      } else if((rightAVValue - leftDVValue) < 2){
         hoffCharge();
       } else {
-        if((rightAVValue - leftDVValue) > 0){
-          hoffAttack();
-        } else {
-          hoffCharge();
-        }
+        hoffAttack();
       }
     }else {
       $bottomRightChar.text('THE HOFF HAS LOST!');
@@ -250,6 +261,23 @@ $(() => {
     }
   }
 
+  // ================ONLOAD CHARACTERS====================
+  function david(){
+    $rightImg.attr('src', davidHasselhoff.image);
+    $rightName.text(davidHasselhoff.name);
+    $rightHPValue.text(davidHasselhoff.HP);
+    $rightAVValue.text(davidHasselhoff.AV);
+    $rightDVValue.text(davidHasselhoff.DV);
+    $rightHVValue.text(davidHasselhoff.HV);
+  }
+  function nicolas(){
+    $leftImg.attr('src', nicolasCage.image);
+    $leftName.text(nicolasCage.name);
+    $leftHPValue.text(nicolasCage.HP);
+    $leftAVValue.text(nicolasCage.AV);
+    $leftDVValue.text(nicolasCage.DV);
+    $leftHVValue.text(nicolasCage.HV);
+  }
   // ===================CHUCK FUNCTIONS================
   // ======================================
   // function chuckNorris(){
@@ -271,22 +299,7 @@ $(() => {
   $rightHealBar.css('width', `${rightHealWidth}px`);
   david();
   nicolas();
-  function david(){
-    $rightImg.attr('src', davidHasselhoff.image);
-    $rightName.text(davidHasselhoff.name);
-    $rightHPValue.text(davidHasselhoff.HP);
-    $rightAVValue.text(davidHasselhoff.AV);
-    $rightDVValue.text(davidHasselhoff.DV);
-    $rightHVValue.text(davidHasselhoff.HV);
-  }
-  function nicolas(){
-    $leftImg.attr('src', nicolasCage.image);
-    $leftName.text(nicolasCage.name);
-    $leftHPValue.text(nicolasCage.HP);
-    $leftAVValue.text(nicolasCage.AV);
-    $leftDVValue.text(nicolasCage.DV);
-    $leftHVValue.text(nicolasCage.HV);
-  }
+
   // ====================LEFT BUTTONS=====================
   $leftAttackButton.on('click', playerAttack);
   $leftChargeButton.on('click', playerCharge);
