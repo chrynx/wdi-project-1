@@ -1,5 +1,6 @@
 $(() => {
   // ==================VARIABLES========================
+  const $leftCharacter = $('.leftCharacter');
   const $leftImg = $('.leftImg');
   const $leftHPValue = $('.leftHPValue');
   const $leftAVValue = $('.leftAVValue');
@@ -13,6 +14,7 @@ $(() => {
   const $leftAttackBar = $('.leftAttackBar');
   const $leftDefBar = $('.leftDefBar');
   const $leftHealBar = $('.leftHealBar');
+  const $leftLights = $('.leftLights');
   // =================CHARACTERS==================
   const nicolasCage = {
     name: 'Nicolas Cage',
@@ -25,9 +27,9 @@ $(() => {
   const davidHasselhoff = {
     name: 'David Hasselhoff',
     HP: 10,
-    AV: 4,
+    AV: 3,
     DV: 4,
-    HV: 4,
+    HV: 3,
     image: '/images/david-hasselhoff.gif'
   };
   const chuckNorris = {
@@ -39,20 +41,20 @@ $(() => {
     HV: 10
   };
   // =========================================================
+  const $rightCharacter = $('.rightCharacter');
   const $rightHPBar = $('.rightHPBar');
   const $rightAttackBar = $('.rightAttackBar');
   const $rightDefBar = $('.rightDefBar');
   const $rightHealBar = $('.rightHealBar');
   const $rightImg = $('.rightImg');
-  const $rightHP = $('.rightHP');
+  const $rightStats = $('.rightStats');
   const $rightHPValue = $('.rightHPValue');
-  const $rightAV = $('.rightAV');
   const $rightAVValue = $('.rightAVValue');
-  const $rightDV = $('.rightDV');
   const $rightDVValue = $('.rightDVValue');
-  const $rightHV = $('.rightHV');
   const $rightHVValue = $('.rightHVValue');
   const $rightName = $('.rightName');
+  const $rightLights = $('.rightLights');
+  // ===============================================================
   const $bottomLeftChar = $('.bottomSpacerLeftChar');
   const $bottomRightChar = $('.bottomSpacerRightChar');
   const $resetButton = $('.resetButton');
@@ -76,9 +78,52 @@ $(() => {
 
   // =================DANGER ZONE=======================
   let norrisIsAlive = false;
-  // ===================================================
+  // ===================SOUNDS========================
+  function bgm(){
+    const bgmSound = new Audio('/audio/bgm.mp3');
+    bgmSound.volume = 0.5;
+    bgmSound.autoplay = true;
+    bgmSound.loop = true;
+    bgmSound.currentTime = 0;
+  }
+  function attackSound(){
+    const attackSound = new Audio('/audio/attack.mp3');
+    attackSound.volume = 0.3;
+    attackSound.play();
+    attackSound.currentTime = 0;
+  }
+  function chargeSound(){
+    const chargeSound = new Audio('/audio/charge.mp3');
+    chargeSound.volume = 0.3;
+    chargeSound.play();
+    chargeSound.currentTime = 0;
+  }
+  function healSound(){
+    const healSound = new Audio('/audio/heal.mp3');
+    healSound.volume = 0.3;
+    healSound.play();
+    healSound.currentTime = 0;
+  }
+  function winSound(){
+    const winSound = new Audio('/audio/win.mp3');
+    winSound.play();
+    winSound.currentTime = 3;
 
+  }
   // ===================FUNCTIONS=======================
+  function onLoad(){
+    $leftHPBar.css('width', `${leftHPWidth}px`);
+    $leftAttackBar.css('width', `${leftAttackWidth}px`);
+    $leftDefBar.css('width', `${leftDefWidth}px`);
+    $leftHealBar.css('width', `${leftHealWidth}px`);
+    $rightHPBar.css('width', `${rightHPWidth}px`);
+    $rightAttackBar.css('width', `${rightAttackWidth}px`);
+    $rightDefBar.css('width', `${rightDefWidth}px`);
+    $rightHealBar.css('width', `${rightHealWidth}px`);
+    david();
+    nicolas();
+    bgm();
+  }
   function disableButtons() {
     $leftAttackButton.prop('disabled', true);
     $leftChargeButton.prop('disabled', true);
@@ -89,222 +134,294 @@ $(() => {
     $leftChargeButton.prop('disabled', false);
     $leftHealButton.prop('disabled', false);
   }
+  // ============TEMPORARY FUNCTIONS==========
+  function leftValues(character){
+    leftHPValue = character.HP;
+    leftAVValue = character.AV;
+  }
+  function leftValueText(character){
+    $leftHPValue.text(character.HP);
+    $leftAVValue.text(character.AV);
+    $leftDVValue.text(character.DV);
+    $leftHVValue.text(character.HV);
+  }
+  function leftImageName(character){
+    $leftImg.attr('src', character.image);
+    $leftName.text(character.name);
+  }
+  function leftBars(character){
+    $leftHPBar.css('width', `${character.HP * 45}`);
+    $leftAttackBar.css('width', `${character.AV * 45}`);
+    $leftDefBar.css('width', `${character.DV * 45}`);
+    $leftHealBar.css('width', `${character.HV * 45}`);
+  }
+  function leftCharText(text){
+    $bottomLeftChar.text(text);
+  }
+  function rightValues(character){
+    rightHPValue = character.HP;
+    rightAVValue = character.AV;
+    rightDVValue = character.DV;
+    rightHVValue = character.HV;
+  }
+  function rightValueText(character){
+    $rightHPValue.text(character.HP);
+    $rightAVValue.text(character.AV);
+    $rightDVValue.text(character.DV);
+    $rightHVValue.text(character.HV);
+  }
+  function rightBars(character){
+    $rightHPBar.css('width', `${character.HP * 45}`);
+    $rightAttackBar.css('width', `${character.AV * 45}`);
+    $rightDefBar.css('width', `${character.DV * 45}`);
+    $rightHealBar.css('width', `${character.HV * 45}`);
+  }
+  function rightImageName(character){
+    $rightImg.attr('src', character.image);
+    $rightName.text(character.name);
+  }
+  function rightCharText(text){
+    $bottomRightChar.text(text);
+  }
+  function setLeftLights(color){
+    $leftLights.css('background-color', color);
+  }
+  function setRightLights(color){
+    $rightLights.css('background-color', color);
+  }
+  function setNorris(argument){
+    norrisIsAlive = argument;
+  }
+  // ======================================
   function resetAll(){
     enableButtons();
-    $leftHPBar.css('width', `${nicolasCage.HP * 45}`);
-    $rightHPBar.css('width', `${davidHasselhoff.HP * 45}`);
-    $leftAttackBar.css('width', `${nicolasCage.AV * 45}`);
-    $rightAttackBar.css('width', `${davidHasselhoff.AV * 45}`);
-    $leftImg.attr('src', nicolasCage.image);
-    $rightImg.attr('src', davidHasselhoff.image);
-    leftHPValue = nicolasCage.HP;
-    leftAVValue = nicolasCage.AV;
-    rightHPValue = davidHasselhoff.HP;
-    rightAVValue = davidHasselhoff.AV;
-    if(norrisIsAlive === false)releaseChuckNorris();
-    else norrisIsAlive = true;
+    setLeftLights('black');
+    setRightLights('black');
+    leftBars(nicolasCage);
+    leftImageName(nicolasCage);
+    leftValues(nicolasCage);
+    if(rightHPValue === 0 && norrisIsAlive === false){
+      releaseChuckNorris();
+    } else {
+      rightBars(davidHasselhoff);
+      rightImageName(davidHasselhoff);
+      leftCharText('I think I jump around more when I\'m alone.');
+      rightCharText('We made sure nobody died on the show. We made sure nobody ever drowned on \'Baywatch\'.');
+      rightValues(davidHasselhoff);
+      rightValueText(davidHasselhoff);
+      setNorris(false);
+    }
   }
   function releaseChuckNorris(){
-    norrisIsAlive = false;
-    $rightImg.attr('src', chuckNorris.image);
-    $rightName.text(chuckNorris.name);
-    rightHPValue = chuckNorris.HP;
-    rightAVValue = chuckNorris.AV;
-    rightDVValue = chuckNorris.DV;
-    rightHVValue = chuckNorris.HV;
-    $rightHPValue.text(chuckNorris.HP);
-    $rightAVValue.text(chuckNorris.AV);
-    $rightDVValue.text(chuckNorris.DV);
-    $rightHVValue.text(chuckNorris.HV);
-    $rightHPBar.css('width', `${chuckNorris.HP * 45}`);
-    $rightAttackBar.css('width', `${chuckNorris.AV * 45}`);
-    $rightDefBar.css('width', `${chuckNorris.DV * 45}`);
-    $rightHealBar.css('width', `${chuckNorris.HV * 45}`);
-    $rightHP.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightAV.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightDV.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightHV.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightHPValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightAVValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightDVValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
-    $rightHVValue.css('margin': 'auto 4px', 'padding': 'auto 5px');
+    setNorris(true);
+    leftCharText('NOPE');
+    rightCharText('Chuck Norris doesn\'t battle, He just allows you to lose');
+    rightImageName(chuckNorris);
+    rightValues(chuckNorris);
+    rightValueText(chuckNorris);
+    rightBars(chuckNorris);
+    $rightStats.css('font-size', '20px');
   }
   function leftCharLost() {
     $leftImg.attr('src', '/images/player-lose.gif');
     $rightImg.attr('src', '/images/hoff-wins.gif');
   }
   function rightCharLost() {
-    $leftImg.attr('src', '/images/player-wins.gif');   $rightImg.attr('src', '/images/hoff-loses.gif');
+    $leftImg.attr('src', '/images/player-wins.gif');
+    $rightImg.attr('src', '/images/hoff-loses.gif');
   }
-  // =======================================
+  // ==========================ANIMATIONS==========================
+  function leftAttack(){
+    $rightCharacter.toggleClass('animated shake');
+  }
+  function rightAttack(){
+    $leftCharacter.toggleClass('animated shake');
+
+  }
+  function leftHeal(){
+    $leftCharacter.toggleClass('animated pulse');
+  }
+  function rightHeal(){
+    $rightCharacter.toggleClass('animated pulse');
+  }
+  function leftCharge(){
+    $leftCharacter.toggleClass('animated tada');
+  }
+  function rightCharge(){
+    $rightCharacter.toggleClass('animated tada');
+  }
+  // ================SMALL FUNCTIONS=======================
+  function leftHalfAttack(){
+    leftAVValue = leftAVValue / 2;
+  }
+  function rightHalfAttack(){
+    rightAVValue = rightAVValue / 2;
+  }
+  function attackDegrade(value, bar){
+    const attackDegrade = value * 45;
+    bar.css('width', `${attackDegrade}px`);
+  }
+  function remainingHP(value, bar){
+    const remainingHP = value * 45;
+    bar.css('width', `${remainingHP}px`);
+  }
+  function doubleAttack(value, bar){
+    const doubleAttack = value * 45;
+    bar.css('width', `${doubleAttack}px`);
+  }
+  function healHP(value, bar){
+    const healHP = value * 45;
+    bar.css('width', `${healHP}px`);
+  }
+  function setRightWidthZero(){
+    $rightHPBar.css('width', '0px');
+    $rightAttackBar.css('width', '0px');
+    $rightDefBar.css('width', '0px');
+    $rightHealBar.css('width', '0px');
+  }
+  function healValue(HPval, HVval){
+    HPval = HPval + HVval;
+  }
+  // ================PLAYER FUNCTIONS==============
   function playerAttack(){
-    console.log('left attack');
+    attackSound();
+    $leftLights.css('background-color', 'red');
     if((leftAVValue - rightDVValue) > 0){
+      leftAttack();
       rightHPValue = rightHPValue - (leftAVValue - rightDVValue);
-      const remainingHP = rightHPValue * 45;
-      $rightHPBar.css('width', `${remainingHP}px`);
+      remainingHP(rightHPValue, $rightHPBar);
       // ------------------
-      leftAVValue = leftAVValue / 2;
-      const attackDegrade = leftAVValue * 45;
-      $leftAttackBar.css('width', `${attackDegrade}px`);
-      $bottomLeftChar.text(`You attacked with ${((leftAVValue * 2) - rightDVValue)} damage!`);
+      leftHalfAttack();
+      attackDegrade(leftAVValue, $leftAttackBar);
+      leftCharText(`You attacked with ${((leftAVValue * 2) - rightDVValue)} damage!`);
       // -------------------
       if(rightHPValue <= 0){
-        $bottomLeftChar.text('Your attack killed the enemy!');
+        winSound();
+        setRightWidthZero();
+        leftCharText('Your attack killed the enemy!');
         rightCharLost();
         disableButtons();
       }
     } else {
-      leftAVValue = leftAVValue / 2;
-      const attackDegrade = leftAVValue * 45;
-      $leftAttackBar.css('width', `${attackDegrade}px`);
-      $bottomLeftChar.text('You did no damage!');
+      leftHalfAttack();
+      attackDegrade(leftAVValue, $leftAttackBar);
+      leftCharText('You did no damage!');
     }
     hoffTurn();
   }
   function playerCharge(){
-    console.log('left charge');
+    chargeSound();
+    setLeftLights('grey');
     leftAVValue = leftAVValue * 2;
+    leftCharge();
     if(leftAVValue > 10){
       leftAVValue = 10;
-      const doubleAttack = leftAVValue * 45;
-      $leftAttackBar.css('width', `${doubleAttack}px`);
-      $bottomLeftChar.text('Your attack is at maximum!');
+      doubleAttack(leftAVValue, $leftAttackBar);
+      leftCharText('Your attack is at maximum!');
     } else {
-      const doubleAttack = leftAVValue * 45;
-      $leftAttackBar.css('width', `${doubleAttack}px`);
-      $bottomLeftChar.text('Player charged this turn, doubling his/her attack');
+      doubleAttack(leftAVValue, $leftAttackBar);
+      leftCharText('Player charged this turn, doubling his/her attack');
     }
     hoffTurn();
   }
   function playerHeal(){
-    console.log('left heal');
-    leftHPValue = leftHPValue + leftHVValue;
+    healSound();
+    setLeftLights('green');
+    healValue(leftHPValue, leftHVValue);
+    leftHeal();
     if(leftHPValue > 10){
       leftHPValue = 10;
-      const healHP = leftHPValue * 45;
-      $leftHPBar.css('width', `${healHP}px`);
-      $bottomLeftChar.text('You are on maximum health!');
+      healHP(leftHPValue, $leftHPBar);
+      leftCharText('You are on maximum health!');
     } else {
-      const healHP = leftHPValue * 45;
-      $leftHPBar.css('width', `${healHP}px`);
-      $bottomLeftChar.text(`You healed ${leftHVValue} damage`);
+      healHP(leftHPValue, $leftHPBar);
+      leftCharText(`You healed ${leftHVValue} damage`);
     }
     hoffTurn();
   }
   // ==================HOFF FUNCTIONS==================
   function hoffTurn() {
     if(rightHPValue > 0){
-      if(rightHPValue <= 5){
-        hoffHeal();
-      } else if(rightAVValue <= 4 && rightHPValue > 8){
-        hoffCharge();
-      } else if((rightAVValue - leftDVValue) < 2){
-        hoffCharge();
-      } else {
-        hoffAttack();
-      }
-    }else {
-      $bottomRightChar.text('THE HOFF HAS LOST!');
+      if(rightHPValue < 6) hoffHeal();
+      if(rightAVValue === 10) hoffAttack();
+      else hoffCharge();
+    } else {
+      rightCharText('THE HOFF HAS LOST!');
     }
   }
   function hoffAttack(){
-    console.log('right attack');
+    attackSound();
+    setRightLights('red');
     if((rightAVValue - leftDVValue) > 0){
+      rightAttack();
       leftHPValue = leftHPValue - (rightAVValue - leftDVValue);
-      const remainingHP = leftHPValue * 45;
-      $leftHPBar.css('width', `${remainingHP}px`);
+      remainingHP(leftHPValue, $leftHPBar);
       // --------------------
-      rightAVValue = rightAVValue / 2;
-      const attackDegrade = rightAVValue * 45;
-      $rightAttackBar.css('width', `${attackDegrade}px`);
-      $bottomRightChar.text(`The Hoff attacked with ${((rightAVValue * 2) - leftDVValue)} damage!`);
+      if(norrisIsAlive === false) rightHalfAttack();
+      attackDegrade(rightAVValue, $rightAttackBar);
+      if(norrisIsAlive === false)rightCharText(`The Hoff attacked with ${((rightAVValue * 2) - leftDVValue)} damage!`);
+      if(norrisIsAlive === true)rightCharText(`Chuck Norris attacked with ${((rightAVValue) - leftDVValue)} damage!`);
       // --------------------------
       if(leftHPValue <= 0){
+        $leftAttackBar.css('width', '0px');
+        $leftDefBar.css('width', '0px');
+        $leftHealBar.css('width', '0px');
         leftCharLost();
         disableButtons();
       }
     } else {
-      rightAVValue = rightAVValue / 2;
-      const attackDegrade = rightAVValue * 45;
-      $rightAttackBar.css('width', `${attackDegrade}px`);
-      console.log('no damage');
+      if(norrisIsAlive === false)rightHalfAttack();
+      attackDegrade(rightAVValue, $rightAttackBar);
     }
   }
   function hoffCharge(){
-    console.log('right charge');
+    chargeSound();
+    setRightLights('grey');
     rightAVValue = rightAVValue * 2;
+    rightCharge();
     if(rightAVValue > 10){
       rightAVValue = 10;
-      const doubleAttack = rightAVValue * 45;
-      $rightAttackBar.css('width', `${doubleAttack}px`);
-      $bottomRightChar.text('The Hoff charged this round, doubling his attack!');
+      doubleAttack(rightAVValue, $rightAttackBar);
+      if(norrisIsAlive === false)rightCharText('The Hoff charged this round, doubling his attack!');
+      if(norrisIsAlive === true)rightCharText('Chuck Norris charged this round, doubling his attack!');
     } else {
-      const doubleAttack = rightAVValue * 45;
-      $rightAttackBar.css('width', `${doubleAttack}px`);
-      $bottomRightChar.text('The Hoff charged this round, doubling his attack!');
+      doubleAttack(rightAVValue, $rightAttackBar);
+      if(norrisIsAlive === false)rightCharText('The Hoff charged this round, doubling his attack!');
+      if(norrisIsAlive === true)rightCharText('Chuck Norris charged this round, doubling his attack!');
     }
   }
   function hoffHeal(){
-    console.log('right heal');
-    rightHPValue = rightHPValue + rightHVValue;
+    healSound();
+    setRightLights('green');
+    healValue(rightHPValue, rightHVValue);
+    rightHeal();
     if(rightHPValue > 10){
       rightHPValue = 10;
-      const healHP = rightHPValue * 45;
-      $rightHPBar.css('width', `${healHP}px`);
-      $bottomRightChar.text('The Hoff is on maximum health!');
+      healHP(rightHPValue, $rightHPBar);
+      if(norrisIsAlive === false)rightCharText('The Hoff is on maximum health!');
+      if(norrisIsAlive === true)rightCharText('Chuck Norris is on maximum health!');
 
     } else {
-      const healHP = rightHPValue * 45;
-      $rightHPBar.css('width', `${healHP}px`);
-      $bottomRightChar.text(`The Hoff healed ${rightHVValue} damage`);
+      healHP(rightHPValue, $rightHPBar);
+      if(norrisIsAlive === false)rightCharText(`The Hoff healed ${rightHVValue} damage`);
+      if(norrisIsAlive === true)rightCharText('Chuck Norris is a god and cannot be harmed');
     }
   }
-
   // ================ONLOAD CHARACTERS====================
   function david(){
-    $rightImg.attr('src', davidHasselhoff.image);
-    $rightName.text(davidHasselhoff.name);
-    $rightHPValue.text(davidHasselhoff.HP);
-    $rightAVValue.text(davidHasselhoff.AV);
-    $rightDVValue.text(davidHasselhoff.DV);
-    $rightHVValue.text(davidHasselhoff.HV);
+    rightImageName(davidHasselhoff);
+    rightValueText(davidHasselhoff);
   }
   function nicolas(){
-    $leftImg.attr('src', nicolasCage.image);
-    $leftName.text(nicolasCage.name);
-    $leftHPValue.text(nicolasCage.HP);
-    $leftAVValue.text(nicolasCage.AV);
-    $leftDVValue.text(nicolasCage.DV);
-    $leftHVValue.text(nicolasCage.HV);
+    leftImageName(nicolasCage);
+    leftValueText(nicolasCage);
   }
-  // ===================CHUCK FUNCTIONS================
-  // ======================================
-  // function chuckNorris(){
-  //   $rightImg.attr('src', '/images/chuck-norris.gif');
-  //   $rightName.text('Chuck Norris');
-  //   $rightHPValue.text('10');
-  //   $rightAVValue.text('10');
-  //   $rightDVValue.text('10');
-  //   $rightHVValue.text('10');
-  // }
   // =======================ACTIONS=====================
-  $leftHPBar.css('width', `${leftHPWidth}px`);
-  $leftAttackBar.css('width', `${leftAttackWidth}px`);
-  $leftDefBar.css('width', `${leftDefWidth}px`);
-  $leftHealBar.css('width', `${leftHealWidth}px`);
-  $rightHPBar.css('width', `${rightHPWidth}px`);
-  $rightAttackBar.css('width', `${rightAttackWidth}px`);
-  $rightDefBar.css('width', `${rightDefWidth}px`);
-  $rightHealBar.css('width', `${rightHealWidth}px`);
-  david();
-  nicolas();
-
+  onLoad();
   // ====================LEFT BUTTONS=====================
   $leftAttackButton.on('click', playerAttack);
   $leftChargeButton.on('click', playerCharge);
   $leftHealButton.on('click', playerHeal);
   // ================================================
   $resetButton.on('click', resetAll);
-
 });

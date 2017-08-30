@@ -2,8 +2,8 @@
 box-sizing: border-box;
 }
 body {
-  background-color: #37729b;
-  color: white;
+  background-color: gold;
+  color: black;
 }
 img {
   max-width: 100%;
@@ -36,7 +36,23 @@ main {
 
 .leftFiller{
   width: 10%;
-  padding: 220px 0;
+  padding: 10px 0;
+}
+.lightBox{
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  padding: 70px 0;
+  background-color: steelBlue;
+  border-radius: 10px;
+}
+.leftLights{
+  margin: 2px auto;
+  height: 100px;
+  width: 100px;
+  border: 5px solid black;
+  border-radius: 90px;
+  background-color: black;
 }
 
 // =====================LEFT CHARACTER==============================
@@ -126,9 +142,6 @@ main {
   background: url('/images/buttons.jpg');
   border-radius: 10px;
 }
-
-// ============================================================
-
 
 /*==================MIDDLE PART OF THE GAME==========================*/
 
@@ -290,9 +303,16 @@ main {
 
 .rightFiller{
   width: 10%;
-  padding: 220px 0;
+  padding: 10px 0;
 }
-
+.rightLights{
+  margin:  2px auto;
+  height: 100px;
+  width: 100px;
+  border: 5px solid black;
+  border-radius: 90px;
+  background-color: black;
+}
 /*===================BOTTOM PART OF THE GAME===========================*/
 
 .bottomSpacer{
@@ -309,6 +329,7 @@ main {
 .bottomSpacerLeftChar{
   width: 27.5%;
   font-family: cursive;
+  font-size: 19px;
 }
 .bottomSpacerMiddle{
   width: 35%;
@@ -316,6 +337,7 @@ main {
 .bottomSpacerRightChar{
   width: 27.5%;
   font-family: cursive;
+  font-size: 19px;
 }
 .bottomSpacerRight{
   width: 10%;

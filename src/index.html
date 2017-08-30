@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>WDI Project 1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body>
-    <header>
-      <h1>BEAT THE HOFF</h1>
-    </header>
-    <main class="game">
-      <div class="topSpacer">
+<head>
+  <meta charset="utf-8">
+  <title>WDI Project 1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+<body>
+  <header>
+    <h1>BEAT THE HOFF</h1>
+  </header>
+  <main class="game">
+    <div class="topSpacer"></div>
+    <div class="centerArea">
+      <div class="leftFiller">
+        <div class="lightBox">
+          <div class="leftLights"></div>
+          <div class="leftLights"></div>
+          <div class="leftLights"></div>
+        </div>
       </div>
-      <div class="centerArea">
-      <div class="leftFiller"></div>
       <div class="leftCharacter">
-      <div class="leftPhoto"><img class="leftImg" autoplay loop></div>
-      <div class="leftName"></div>
-      <div class="leftStats">
-      <div class="leftHP">HP</div>
-      <div class="leftHPValue"></div>
-      <div class="leftAV">AV</div>
-      <div class="leftAVValue"></div>
-      <div class="leftDV">DF</div>
-      <div class="leftDVValue"></div>
-      <div class="leftHV">HV</div>
-      <div class="leftHVValue"></div>
-      </div>
-      <div class="leftButtons">
-        <button class="leftAttackButton">Attack</button>
-        <button class="leftChargeButton">Charge</button>
-        <button class="leftHealButton">Heal</button>
-      </div>
+        <audio src="/audio/attack.mp3"></audio>
+        <div class="leftPhoto"><img class="leftImg" autoplay loop></div>
+        <div class="leftName"></div>
+        <div class="leftStats">
+          <div class="leftHP">HP</div>
+          <div class="leftHPValue"></div>
+          <div class="leftAV">AV</div>
+          <div class="leftAVValue"></div>
+          <div class="leftDV">DF</div>
+          <div class="leftDVValue"></div>
+          <div class="leftHV">HV</div>
+          <div class="leftHVValue"></div>
+        </div>
+        <div class="leftButtons">
+          <button class="leftAttackButton">Attack</button>
+          <button class="leftChargeButton">Charge</button>
+          <button class="leftHealButton">Heal</button>
+        </div>
       </div>
       <div class="middleArea">
         <div class="leftHPBar"></div>
@@ -49,41 +56,44 @@
         <div class="rightHealBar"></div>
       </div>
       <div class="rightCharacter">
-      <div class="rightPhoto"><img class="rightImg" autoplay loop></div>
-      <div class="rightName"></div>
-      <div class="rightStats">
-        <div class="rightHP">HP</div>
-        <div class="rightHPValue"></div>
-        <div class="rightAV">AV</div>
-        <div class="rightAVValue"></div>
-        <div class="rightDV">DF</div>
-        <div class="rightDVValue"></div>
-        <div class="rightHV">HV</div>
-        <div class="rightHVValue"></div>
+        <div class="rightPhoto"><img class="rightImg" autoplay loop></div>
+        <div class="rightName"></div>
+        <div class="rightStats">
+          <div class="rightHP">HP</div>
+          <div class="rightHPValue"></div>
+          <div class="rightAV">AV</div>
+          <div class="rightAVValue"></div>
+          <div class="rightDV">DF</div>
+          <div class="rightDVValue"></div>
+          <div class="rightHV">HV</div>
+          <div class="rightHVValue"></div>
+        </div>
+        <div class="rightButtons">
+        </div>
       </div>
-      <div class="rightButtons">
+      <div class="rightFiller">
+        <div class="lightBox">
+          <div class="rightLights"></div>
+          <div class="rightLights"></div>
+          <div class="rightLights"></div>
+        </div>
       </div>
-      </div>
-      <div class="rightFiller"></div>
     </div>
-      <div class="bottomSpacer">
-      <div class="bottomSpacerLeft">
-      </div>
+    <div class="bottomSpacer">
+      <div class="bottomSpacerLeft"></div>
       <div class="bottomSpacerLeftChar">
-      I think I jump around more when I'm alone.
+        I think I jump around more when I'm alone.
       </div>
-      <div class="bottomSpacerMiddle">
-      </div>
+      <div class="bottomSpacerMiddle"></div>
       <div class="bottomSpacerRightChar">
-      We made sure nobody died on the show. We made sure nobody ever drowned on 'Baywatch'.
+        We made sure nobody died on the show. We made sure nobody ever drowned on 'Baywatch'.
       </div>
-      <div class="bottomSpacerRight">
-      </div>
-      </div>
-    </main>
-    <footer>
-      MADE WITH &hearts; BY CHRYNX
-      <button class="resetButton">RESET</button>
-    </footer>
-  </body>
+      <div class="bottomSpacerRight"></div>
+    </div>
+  </main>
+  <footer>
+    MADE WITH &hearts; BY CHRYNX
+    <button class="resetButton">RESET</button>
+  </footer>
+</body>
 </html>
