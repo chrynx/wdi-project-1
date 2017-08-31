@@ -1,84 +1,208 @@
 $(() => {
-  // ==================VARIABLES========================
-  const $leftCharacter = $('.leftCharacter');
-  const $leftImg = $('.leftImg');
-  const $leftHPValue = $('.leftHPValue');
-  const $leftAVValue = $('.leftAVValue');
-  const $leftDVValue = $('.leftDVValue');
-  const $leftHVValue = $('.leftHVValue');
-  const $leftName = $('.leftName');
-  const $leftAttackButton = $('.leftAttackButton');
-  const $leftChargeButton = $('.leftChargeButton');
-  const $leftHealButton = $('.leftHealButton');
-  const $leftHPBar = $('.leftHPBar');
-  const $leftAttackBar = $('.leftAttackBar');
-  const $leftDefBar = $('.leftDefBar');
-  const $leftHealBar = $('.leftHealBar');
-  const $leftLights = $('.leftLights');
-  // =================CHARACTERS==================
-  const nicolasCage = {
-    name: 'Nicolas Cage',
-    HP: 10,
-    AV: 3,
-    DV: 4,
-    HV: 3,
-    image: '/images/nicolas-cage.gif'
-  };
-  const davidHasselhoff = {
-    name: 'David Hasselhoff',
-    HP: 10,
-    AV: 3,
-    DV: 4,
-    HV: 3,
-    image: '/images/david-hasselhoff.gif'
-  };
-  const chuckNorris = {
-    image: '/images/chuck-norris.gif',
-    name: 'Chuck Norris',
-    HP: 10,
-    AV: 10,
-    DV: 10,
-    HV: 10
-  };
-  // =========================================================
-  const $rightCharacter = $('.rightCharacter');
-  const $rightHPBar = $('.rightHPBar');
-  const $rightAttackBar = $('.rightAttackBar');
-  const $rightDefBar = $('.rightDefBar');
-  const $rightHealBar = $('.rightHealBar');
-  const $rightImg = $('.rightImg');
-  const $rightStats = $('.rightStats');
-  const $rightHPValue = $('.rightHPValue');
-  const $rightAVValue = $('.rightAVValue');
-  const $rightDVValue = $('.rightDVValue');
-  const $rightHVValue = $('.rightHVValue');
-  const $rightName = $('.rightName');
-  const $rightLights = $('.rightLights');
-  // ===============================================================
-  const $bottomLeftChar = $('.bottomSpacerLeftChar');
-  const $bottomRightChar = $('.bottomSpacerRightChar');
+
   const $resetButton = $('.resetButton');
   // ==================================================
-  let leftHPValue = nicolasCage.HP;
-  let leftAVValue = nicolasCage.AV;
-  const leftDVValue = nicolasCage.DV;
-  const leftHVValue = nicolasCage.HV;
-  let rightHPValue = davidHasselhoff.HP;
-  let rightAVValue = davidHasselhoff.AV;
-  let rightDVValue = davidHasselhoff.DV;
-  let rightHVValue = davidHasselhoff.HV;
-  const leftHPWidth = leftHPValue * 45;
-  const leftAttackWidth = leftAVValue * 45;
-  const leftDefWidth = leftDVValue * 45;
-  const leftHealWidth = leftHVValue * 45;
-  const rightHPWidth = rightHPValue * 45;
-  const rightAttackWidth = rightAVValue * 45;
-  const rightDefWidth = rightDVValue * 45;
-  const rightHealWidth = rightHVValue * 45;
+  // const leftHPWidth = leftHPValue * 45;
+  // const leftAttackWidth = leftAVValue * 45;
+  // const leftDefWidth = leftDVValue * 45;
+  // const leftHealWidth = leftHVValue * 45;
+  // const rightHPWidth = rightHPValue * 45;
+  // const rightAttackWidth = rightAVValue * 45;
+  // const rightDefWidth = rightDVValue * 45;
+  // const rightHealWidth = rightHVValue * 45;
 
-  // =================DANGER ZONE=======================
+  // ====================CONSTRUCTOR====================================
+  const player = new Player(
+    '/images/nicolas-cage.gif',
+    'Nicolas Cage',
+    10,
+    3,
+    4,
+    3,
+    '/images/player-wins.gif',
+    '/images/player-lose.gif',
+    'left'
+  );
+  const david = new Player(
+    '/images/david-hasselhoff.gif',
+    'David Hasselhoff',
+    10,
+    3,
+    4,
+    3,
+    '/images/hoff-wins.gif',
+    '/images/hoff-loses.gif',
+    'right'
+  );
+  const godMode = new Player(
+    '/images/chuck-norris.gif',
+    'Chuck Norris',
+    10,
+    10,
+    10,
+    10,
+    '/images/chuck-norris-win.gif',
+    '/images/player-give-up.gif',
+    'right'
+  );
+  player.onLoad();
+  david.onLoad();
+  function Player(imgsrc, name, hp, av, dv, hv, winPhoto, losePhoto, side){
+    this.lights = $(`.${side}Lights`);
+    this.character = $(`.${side}Character`);
+    this.img = $(`.${side}Img`);
+    this.imgsrc = imgsrc;
+    this.nameArea = $(`.${side}Name`);
+    this.name = name;
+    this.stats = $(`.${side}Stats`);
+    this.hpArea = $(`.${side}HPValue`);
+    this.hp = hp;
+    this.avArea = $(`.${side}AVValue`);
+    this.av = av;
+    this.dvArea = $(`.${side}DVValue`);
+    this.dv = dv;
+    this.hvArea = $(`.${side}HVValue`);
+    this.hv = hv;
+    this.attButton = $(`.${side}AttackButton`);
+    this.chargeButton = $(`.${side}ChargeButton`);
+    this.healButton = $(`.${side}HealButton`);
+    this.hpBar = $(`.${side}HPBar`);
+    this.avBar = $(`.${side}AttackBar`);
+    this.dvBar = $(`.${side}DefBar`);
+    this.hvBar = $(`.${side}HealBar`);
+    this.text = $(`.bottomSpacer${side}Char`);
+    this.winPhoto = winPhoto;
+    this.losePhoto = losePhoto;
+    this.turnOnLights = function(color) {
+      this.lights.css('background-color', color);
+    };
+    this.setBars = function() {
+      this.hpBar.css('width', `${this.hp * 45}`);
+      this.avBar.css('width', `${this.av * 45}`);
+      this.dvBar.css('width', `${this.dv * 45}`);
+      this.hvBar.css('width', `${this.hv * 45}`);
+    };
+    this.setValues = function() {
+      this.hpValue = this.hp;
+      this.avValue = this.av;
+      this.dvValue = this.dv;
+      this.hvValue = this.hv;
+    };
+    this.valueText = function(){
+      this.hpArea.text(this.hp);
+      this.avArea.text(this.av);
+      this.dvArea.text(this.dv);
+      this.hvArea.text(this.hv);
+    };
+    this.attack = function(enemy){
+      attackSound();
+      this.turnOnLights('red');
+      if((this.avValue - enemy.dvValue) > 0){
+        enemy.character.toggleClass('animated shake');
+        enemy.hpValue = enemy.hpValue - (this.avValue - enemy.dvValue);
+        if(enemy.hpValue <= 0){
+          player.disableButtons(true);
+          winSound();
+          this.zeroWidth(enemy);
+          this.charText('Your attack killed the enemy!');
+          this.charLost(enemy);
+        }
+        this.changes(enemy.hpValue, enemy.hpBar);
+        this.halfAttack();
+        this.changes(this.avValue, this.avBar);
+        this.charText(`You attacked with ${((this.avValue * 2) - enemy.dvValue)} damage!`);
+
+      } else {
+        this.halfAttack();
+        this.changes(this.avValue, this.avBar);
+        this.charText('You did no damage!');
+      }
+    };
+    this.halfAttack = function(){
+      if(norrisIsAlive === false) this.avValue = this.avValue / 2;
+      if(norrisIsAlive === true) console.log('I\'m a god');
+    };
+    this.charge = function(){
+      this.character.toggleClass('animated tada');
+      chargeSound();
+      this.turnOnLights('grey');
+      this.avValue = this.avValue * 2;
+      if(this.avValue > 10){
+        this.avValue = 10;
+        this.changes(this.avValue, this.avBar);
+        this.charText('Your attack is at maximum!');
+        console.log('this is my avValue afer charge', this.avValue);
+      } else {
+        this.changes(this.avValue, this.avBar);
+        this.charText('Player charged this turn, doubling his/her attack');
+      }
+    };
+    this.heal = function(){
+      this.character.toggleClass('animated pulse');
+      healSound();
+      this.turnOnLights('green');
+      this.hpValue = this.hpValue + this.hvValue;
+      if(this.hpValue > 10){
+        this.hpValue = 10;
+        this.changes(this.hpValue, this.hpBar);
+        this.charText('You are on maximum health!');
+      } else {
+        this.changes(this.hpValue, this.hpBar);
+        this.charText(`You healed ${this.hvValue} damage`);
+      }
+    };
+    this.disableButtons = function(argument){
+      this.attButton.prop('disabled', argument);
+      this.chargeButton.prop('disabled', argument);
+      this.healButton.prop('disabled', argument);
+    };
+    this.imageName = function(){
+      this.img.attr('src', this.imgsrc);
+      this.nameArea.text(this.name);
+    };
+    this.charText = function(text){
+      this.text.text(text);
+
+    };
+    this.changes = function(value, bar){
+      const change = value * 45;
+      bar.css('width', `${change}px`);
+    };
+    this.charLost = function(enemy){
+      this.img.attr('src', this.winPhoto);
+      enemy.img.attr('src', this.losePhoto);
+    };
+    this.zeroWidth = function(enemy){
+      enemy.hpBar.css('width', '0px');
+      enemy.avBar.css('width', '0px');
+      enemy.dvBar.css('width', '0px');
+      enemy.hvBar.css('width', '0px');
+    };
+    this.onLoad = function(){
+      this.imageName();
+      this.valueText();
+      this.setValues();
+      this.setBars();
+    };
+  }
+  // =================DANGER ZONE=============================
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  function setNorris(argument){
+    norrisIsAlive = argument;
+  }
   let norrisIsAlive = false;
-  // ===================SOUNDS========================
+  function releaseChuckNorris(){
+    setNorris(true);
+    godMode.onLoad();
+    player.charText('NOPE');
+    godMode.charText('Chuck Norris doesn\'t battle, he just allows you to lose');
+    godMode.stats.css('font-size', '20px');
+  }
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  // ===================SOUNDS================================
+  bgm();
   function bgm(){
     const bgmSound = new Audio('/audio/bgm.mp3');
     bgmSound.volume = 0.5;
@@ -110,319 +234,51 @@ $(() => {
     winSound.currentTime = 3;
 
   }
-  // ===================FUNCTIONS=======================
-  function onLoad(){
-    $leftHPBar.css('width', `${leftHPWidth}px`);
-    $leftAttackBar.css('width', `${leftAttackWidth}px`);
-    $leftDefBar.css('width', `${leftDefWidth}px`);
-    $leftHealBar.css('width', `${leftHealWidth}px`);
-    $rightHPBar.css('width', `${rightHPWidth}px`);
-    $rightAttackBar.css('width', `${rightAttackWidth}px`);
-    $rightDefBar.css('width', `${rightDefWidth}px`);
-    $rightHealBar.css('width', `${rightHealWidth}px`);
-    david();
-    nicolas();
-    bgm();
+  // =====================ENEMY LOGIC============================
+  function enemyTurn(enemy){
+    if(enemy.hpValue <= 0){
+      console.log('lost');
+    } else {
+      if(enemy.hpValue < 6){
+        enemy.heal();
+      } else if(enemy.avValue < 4){
+        enemy.charge();
+      } else if(enemy.hpValue > 5 && enemy.avValue > 5){
+        enemy.attack(player);
+      } else {
+        enemy.attack(player);
+      }
+    }
   }
-  function disableButtons() {
-    $leftAttackButton.prop('disabled', true);
-    $leftChargeButton.prop('disabled', true);
-    $leftHealButton.prop('disabled', true);
-  }
-  function enableButtons() {
-    $leftAttackButton.prop('disabled', false);
-    $leftChargeButton.prop('disabled', false);
-    $leftHealButton.prop('disabled', false);
-  }
-  // ============TEMPORARY FUNCTIONS==========
-  function leftValues(character){
-    leftHPValue = character.HP;
-    leftAVValue = character.AV;
-  }
-  function leftValueText(character){
-    $leftHPValue.text(character.HP);
-    $leftAVValue.text(character.AV);
-    $leftDVValue.text(character.DV);
-    $leftHVValue.text(character.HV);
-  }
-  function leftImageName(character){
-    $leftImg.attr('src', character.image);
-    $leftName.text(character.name);
-  }
-  function leftBars(character){
-    $leftHPBar.css('width', `${character.HP * 45}`);
-    $leftAttackBar.css('width', `${character.AV * 45}`);
-    $leftDefBar.css('width', `${character.DV * 45}`);
-    $leftHealBar.css('width', `${character.HV * 45}`);
-  }
-  function leftCharText(text){
-    $bottomLeftChar.text(text);
-  }
-  function rightValues(character){
-    rightHPValue = character.HP;
-    rightAVValue = character.AV;
-    rightDVValue = character.DV;
-    rightHVValue = character.HV;
-  }
-  function rightValueText(character){
-    $rightHPValue.text(character.HP);
-    $rightAVValue.text(character.AV);
-    $rightDVValue.text(character.DV);
-    $rightHVValue.text(character.HV);
-  }
-  function rightBars(character){
-    $rightHPBar.css('width', `${character.HP * 45}`);
-    $rightAttackBar.css('width', `${character.AV * 45}`);
-    $rightDefBar.css('width', `${character.DV * 45}`);
-    $rightHealBar.css('width', `${character.HV * 45}`);
-  }
-  function rightImageName(character){
-    $rightImg.attr('src', character.image);
-    $rightName.text(character.name);
-  }
-  function rightCharText(text){
-    $bottomRightChar.text(text);
-  }
-  function setLeftLights(color){
-    $leftLights.css('background-color', color);
-  }
-  function setRightLights(color){
-    $rightLights.css('background-color', color);
-  }
-  function setNorris(argument){
-    norrisIsAlive = argument;
-  }
-  // ======================================
+  // ========================BUTTONS============================
+  player.attButton.on('click', function (){
+    if(norrisIsAlive === false)player.attack(david); enemyTurn(david);
+    if(norrisIsAlive === true)player.attack(godMode); enemyTurn(godMode);
+  });
+  player.chargeButton.on('click', function (){
+    player.charge();
+    if(norrisIsAlive === false)enemyTurn(david);
+    if(norrisIsAlive === true)enemyTurn(godMode);
+  });
+  player.healButton.on('click', function (){
+    player.heal();
+    if(norrisIsAlive === false)enemyTurn(david);
+    if(norrisIsAlive === true)enemyTurn(godMode);
+  });
+  // ========================RESET================================
+  $resetButton.on('click', resetAll);
   function resetAll(){
-    enableButtons();
-    setLeftLights('black');
-    setRightLights('black');
-    leftBars(nicolasCage);
-    leftImageName(nicolasCage);
-    leftValues(nicolasCage);
-    if(rightHPValue === 0 && norrisIsAlive === false){
+    player.disableButtons(false);
+    player.turnOnLights('black');
+    david.turnOnLights('black');
+    player.onLoad();
+    if(david.hpValue <= 0 && norrisIsAlive === false){
       releaseChuckNorris();
     } else {
-      rightBars(davidHasselhoff);
-      rightImageName(davidHasselhoff);
-      leftCharText('I think I jump around more when I\'m alone.');
-      rightCharText('We made sure nobody died on the show. We made sure nobody ever drowned on \'Baywatch\'.');
-      rightValues(davidHasselhoff);
-      rightValueText(davidHasselhoff);
+      david.onLoad();
+      player.text.text('I think I jump around more when I\'m alone.');
+      david.text.text('We made sure nobody died on the show. We made sure nobody ever drowned on \'Baywatch\'.');
       setNorris(false);
     }
   }
-  function releaseChuckNorris(){
-    setNorris(true);
-    leftCharText('NOPE');
-    rightCharText('Chuck Norris doesn\'t battle, He just allows you to lose');
-    rightImageName(chuckNorris);
-    rightValues(chuckNorris);
-    rightValueText(chuckNorris);
-    rightBars(chuckNorris);
-    $rightStats.css('font-size', '20px');
-  }
-  function leftCharLost() {
-    $leftImg.attr('src', '/images/player-lose.gif');
-    $rightImg.attr('src', '/images/hoff-wins.gif');
-  }
-  function rightCharLost() {
-    $leftImg.attr('src', '/images/player-wins.gif');
-    $rightImg.attr('src', '/images/hoff-loses.gif');
-  }
-  // ==========================ANIMATIONS==========================
-  function leftAttack(){
-    $rightCharacter.toggleClass('animated shake');
-  }
-  function rightAttack(){
-    $leftCharacter.toggleClass('animated shake');
-
-  }
-  function leftHeal(){
-    $leftCharacter.toggleClass('animated pulse');
-  }
-  function rightHeal(){
-    $rightCharacter.toggleClass('animated pulse');
-  }
-  function leftCharge(){
-    $leftCharacter.toggleClass('animated tada');
-  }
-  function rightCharge(){
-    $rightCharacter.toggleClass('animated tada');
-  }
-  // ================SMALL FUNCTIONS=======================
-  function leftHalfAttack(){
-    leftAVValue = leftAVValue / 2;
-  }
-  function rightHalfAttack(){
-    rightAVValue = rightAVValue / 2;
-  }
-  function attackDegrade(value, bar){
-    const attackDegrade = value * 45;
-    bar.css('width', `${attackDegrade}px`);
-  }
-  function remainingHP(value, bar){
-    const remainingHP = value * 45;
-    bar.css('width', `${remainingHP}px`);
-  }
-  function doubleAttack(value, bar){
-    const doubleAttack = value * 45;
-    bar.css('width', `${doubleAttack}px`);
-  }
-  function healHP(value, bar){
-    const healHP = value * 45;
-    bar.css('width', `${healHP}px`);
-  }
-  function setRightWidthZero(){
-    $rightHPBar.css('width', '0px');
-    $rightAttackBar.css('width', '0px');
-    $rightDefBar.css('width', '0px');
-    $rightHealBar.css('width', '0px');
-  }
-  // ================PLAYER FUNCTIONS==============
-  function playerAttack(){
-    attackSound();
-    setLeftLights('red');
-    if((leftAVValue - rightDVValue) > 0){
-      leftAttack();
-      rightHPValue = rightHPValue - (leftAVValue - rightDVValue);
-      remainingHP(rightHPValue, $rightHPBar);
-      // ------------------
-      leftHalfAttack();
-      attackDegrade(leftAVValue, $leftAttackBar);
-      leftCharText(`You attacked with ${((leftAVValue * 2) - rightDVValue)} damage!`);
-      // -------------------
-      if(rightHPValue <= 0){
-        winSound();
-        setRightWidthZero();
-        leftCharText('Your attack killed the enemy!');
-        rightCharLost();
-        disableButtons();
-      }
-    } else {
-      leftHalfAttack();
-      attackDegrade(leftAVValue, $leftAttackBar);
-      leftCharText('You did no damage!');
-    }
-    hoffTurn();
-  }
-  function playerCharge(){
-    chargeSound();
-    setLeftLights('grey');
-    leftAVValue = leftAVValue * 2;
-    leftCharge();
-    if(leftAVValue > 10){
-      leftAVValue = 10;
-      doubleAttack(leftAVValue, $leftAttackBar);
-      leftCharText('Your attack is at maximum!');
-    } else {
-      doubleAttack(leftAVValue, $leftAttackBar);
-      leftCharText('Player charged this turn, doubling his/her attack');
-    }
-    hoffTurn();
-  }
-  function playerHeal(){
-    healSound();
-    setLeftLights('green');
-    leftHPValue = leftHPValue + leftHVValue;
-    leftHeal();
-    if(leftHPValue > 10){
-      leftHPValue = 10;
-      healHP(leftHPValue, $leftHPBar);
-      leftCharText('You are on maximum health!');
-    } else {
-      healHP(leftHPValue, $leftHPBar);
-      leftCharText(`You healed ${leftHVValue} damage`);
-    }
-    hoffTurn();
-  }
-  // ==================HOFF FUNCTIONS==================
-  function hoffTurn() {
-    if(rightHPValue > 0){
-      if(rightHPValue < 6){
-        hoffHeal();
-      }else if(rightAVValue === 10){
-        hoffAttack();
-      }else {
-        hoffCharge();
-      }
-    }else {
-      rightCharText('THE HOFF HAS LOST!');
-    }
-  }
-  function hoffAttack(){
-    attackSound();
-    setRightLights('red');
-    if((rightAVValue - leftDVValue) > 0){
-      rightAttack();
-      leftHPValue = leftHPValue - (rightAVValue - leftDVValue);
-      remainingHP(leftHPValue, $leftHPBar);
-      // --------------------
-      if(norrisIsAlive === false) rightHalfAttack();
-      attackDegrade(rightAVValue, $rightAttackBar);
-      if(norrisIsAlive === false)rightCharText(`The Hoff attacked with ${((rightAVValue * 2) - leftDVValue)} damage!`);
-      if(norrisIsAlive === true)rightCharText(`Chuck Norris attacked with ${((rightAVValue) - leftDVValue)} damage!`);
-      // --------------------------
-      if(leftHPValue <= 0){
-        $leftAttackBar.css('width', '0px');
-        $leftDefBar.css('width', '0px');
-        $leftHealBar.css('width', '0px');
-        leftCharLost();
-        disableButtons();
-      }
-    } else {
-      if(norrisIsAlive === false)rightHalfAttack();
-      attackDegrade(rightAVValue, $rightAttackBar);
-    }
-  }
-  function hoffCharge(){
-    chargeSound();
-    setRightLights('grey');
-    rightAVValue = rightAVValue * 2;
-    rightCharge();
-    if(rightAVValue > 10){
-      rightAVValue = 10;
-      doubleAttack(rightAVValue, $rightAttackBar);
-      if(norrisIsAlive === false)rightCharText('The Hoff charged this round, doubling his attack!');
-      if(norrisIsAlive === true)rightCharText('Chuck Norris charged this round, doubling his attack!');
-    } else {
-      doubleAttack(rightAVValue, $rightAttackBar);
-      if(norrisIsAlive === false)rightCharText('The Hoff charged this round, doubling his attack!');
-      if(norrisIsAlive === true)rightCharText('Chuck Norris charged this round, doubling his attack!');
-    }
-  }
-  function hoffHeal(){
-    healSound();
-    setRightLights('green');
-    rightHPValue = rightHPValue + rightHVValue;
-    rightHeal();
-    if(rightHPValue > 10){
-      rightHPValue = 10;
-      healHP(rightHPValue, $rightHPBar);
-      if(norrisIsAlive === false)rightCharText('The Hoff is on maximum health!');
-      if(norrisIsAlive === true)rightCharText('Chuck Norris is on maximum health!');
-
-    } else {
-      healHP(rightHPValue, $rightHPBar);
-      if(norrisIsAlive === false)rightCharText(`The Hoff healed ${rightHVValue} damage`);
-      if(norrisIsAlive === true)rightCharText('Chuck Norris is a god and cannot be harmed');
-    }
-  }
-  // ================ONLOAD CHARACTERS====================
-  function david(){
-    rightImageName(davidHasselhoff);
-    rightValueText(davidHasselhoff);
-  }
-  function nicolas(){
-    leftImageName(nicolasCage);
-    leftValueText(nicolasCage);
-  }
-  // =======================ACTIONS=====================
-  onLoad();
-  // ====================LEFT BUTTONS=====================
-  $leftAttackButton.on('click', playerAttack);
-  $leftChargeButton.on('click', playerCharge);
-  $leftHealButton.on('click', playerHeal);
-  // ================================================
-  $resetButton.on('click', resetAll);
 });
