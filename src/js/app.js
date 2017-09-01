@@ -156,6 +156,7 @@ $(() => {
       bar.css('width', `${change}px`);
     };
     this.charLost = function(enemy){
+      console.log(norrisIsAlive);
       this.img.attr('src', this.winPhoto);
       enemy.img.attr('src', this.losePhoto);
     };
@@ -170,16 +171,14 @@ $(() => {
   // =================DANGER ZONE=============================
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  function setNorris(argument){
-    norrisIsAlive = argument;
-  }
+
   let norrisIsAlive = false;
   function releaseChuckNorris(){
+    norrisIsAlive = true;
     godMode.onLoad();
     player.charText('NOPE');
     godMode.charText('Chuck Norris doesn\'t battle, he just allows you to lose');
     godMode.stats.css('font-size', '20px');
-    setNorris(true);
   }
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
@@ -258,8 +257,9 @@ $(() => {
     if(david.hpValue <= 0 && norrisIsAlive === false){
       releaseChuckNorris();
     } else {
+      norrisIsAlive = false;
+      console.log(norrisIsAlive);
       david.onLoad();
-      setNorris(false);
       david.stats.css('font-size', '25px');
       player.charText('I think I jump around more when I\'m alone.');
       david.charText('We made sure nobody died on the show. We made sure nobody ever drowned on \'Baywatch\'.');
