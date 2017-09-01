@@ -1,5 +1,4 @@
 $(() => {
-
   const $resetButton = $('.resetButton');
   // ==================================================
   // ====================CONSTRUCTOR====================================
@@ -66,6 +65,12 @@ $(() => {
     this.losePhoto = losePhoto;
     this.turnOnLights = function(color) {
       this.lights.css('background-color', color);
+      this.lights.on('mouseover', () => {
+        this.lights.css('background-color', 'gold');
+      });
+      this.lights.on('mouseout', () => {
+        this.lights.css('background-color', color);
+      });
     };
     this.setBars = function() {
       this.hpBar.css('width', `${this.hp * 45}`);
