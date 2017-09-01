@@ -165,6 +165,7 @@ $(() => {
       this.setValues();
       this.setBars();
       this.valueText();
+      this.charLost;
 
     };
   }
@@ -258,8 +259,6 @@ $(() => {
       releaseChuckNorris();
     } else {
       norrisIsAlive = false;
-      david.winPhoto = david.winPhoto;
-      david.losePhoto = david.losePhoto;
       david.onLoad();
       david.stats.css('font-size', '25px');
       player.charText('I think I jump around more when I\'m alone.');
