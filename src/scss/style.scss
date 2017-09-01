@@ -65,7 +65,7 @@ main {
   border: 5px solid black;
   border-radius: 10px;
   width: 27.5%;
-  background: url('public/images/character-card.jpg');
+  background: url('/public/images/character-card.jpg');
   display: flex;
   flex-direction: column;
   color: black;
@@ -86,7 +86,7 @@ main {
   margin: 10px;
   text-align: center;
   border: 2px solid black;
-  background: url('public/images/stats-bar.jpg');
+  background: url('/public/images/stats-bar.jpg');
   &:hover {
     background: gold;
     color: #0c3855;
@@ -98,7 +98,7 @@ main {
   justify-content: center;
   margin: 10px;
   border: 2px solid black;
-  background: url('public/images/stats-bar.jpg');
+  background: url('/public/images/stats-bar.jpg');
   &:hover {
     background: gold;
     color: #0c3855;
@@ -188,7 +188,7 @@ main {
 // ========================LEFT HP BAR==============================
 
 .leftHPBar{
-  background: url('public/images/health-bar.jpg');
+  background: url('/public/images/health-bar.jpg');
   padding: 25px 0;
   margin-bottom: 10px;
   border-top-right-radius: 90px;
@@ -198,7 +198,7 @@ main {
   }
 }
 .leftAttackBar{
-  background: url('public/images/attack-bar.jpg');
+  background: url('/public/images/attack-bar.jpg');
   padding: 5px 0;
   margin-bottom: 5px;
   border-top-right-radius: 90px;
@@ -209,7 +209,7 @@ main {
   }
 }
 .leftDefBar{
-  background: url('public/images/defense-bar.jpg');
+  background: url('/public/images/defense-bar.jpg');
   padding: 5px 0;
   margin-bottom: 5px;
   border-top-right-radius: 90px;
@@ -220,7 +220,7 @@ main {
   }
 }
 .leftHealBar{
-  background: url('public/images/heal-bar.jpg');
+  background: url('/public/images/heal-bar.jpg');
   padding: 5px 0;
   margin-bottom: 5px;
   border-top-right-radius: 90px;
@@ -250,7 +250,7 @@ main {
 // =======================RIGHT HP BAR==================================
 
 .rightHPBar{
-  background: url('public/images/health-bar.jpg');
+  background: url('/public/images/health-bar.jpg');
   padding: 25px 0;
   margin-top: 10px;
   align-self: flex-end;
@@ -261,7 +261,7 @@ main {
   }
 }
 .rightAttackBar{
-  background: url('public/images/attack-bar.jpg');
+  background: url('/public/images/attack-bar.jpg');
   padding: 5px 0;
   align-self: flex-end;
   margin-top: 5px;
@@ -273,7 +273,7 @@ main {
   }
 }
 .rightDefBar{
-  background: url('public/images/defense-bar.jpg');
+  background: url('/public/images/defense-bar.jpg');
   padding: 5px 0;
   align-self: flex-end;
   margin-top: 5px;
@@ -285,7 +285,7 @@ main {
   }
 }
 .rightHealBar{
-  background: url('public/images/heal-bar.jpg');
+  background: url('/public/images/heal-bar.jpg');
   padding: 5px 0;
   align-self: flex-end;
   margin-top: 5px;
@@ -310,7 +310,7 @@ main {
   flex-direction: column;
   color: black;
   font-size: 25px;
-  background: url('public/images/character-card.jpg');
+  background: url('/public/images/character-card.jpg');
 }
 .rightPhoto{
   border: 5px solid black;
@@ -320,7 +320,7 @@ main {
   align-self: flex-end;
   overflow: hidden;
   &:hover {
-    background: url('public/images/david-hasselhoff-alternate.gif');
+    background: url('/public/images/david-hasselhoff-alternate.gif');
   }
 }
 .rightImg{
@@ -332,7 +332,7 @@ main {
   margin: 10px;
   text-align: center;
   border: 2px solid black;
-  background: url('public/images/stats-bar.jpg');
+  background: url('/public/images/stats-bar.jpg');
   &:hover {
     background: gold;
     color: #0c3855;
@@ -344,7 +344,7 @@ main {
   justify-content: center;
   margin: 10px;
   border: 2px solid black;
-  background: url('public/images/stats-bar.jpg');
+  background: url('/public/images/stats-bar.jpg');
   &:hover {
     background: gold;
     color: #0c3855;
@@ -383,21 +383,21 @@ main {
   height: 30px;
   width: 70px;
   color: white;
-  background: url('public/images/buttons.jpg');
+  background: url('/public/images/buttons.jpg');
   border-radius: 10px;
 }
 .rightChargeButton{
   height: 30px;
   width: 70px;
   color: white;
-  background: url('public/images/buttons.jpg');
+  background: url('/public/images/buttons.jpg');
   border-radius: 10px;
 }
 .rightHealButton{
   height: 30px;
   width: 70px;
   color: white;
-  background: url('public/images/buttons.jpg');
+  background: url('/public/images/buttons.jpg');
   border-radius: 10px;
 }
 
