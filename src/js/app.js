@@ -4,36 +4,36 @@ $(() => {
   // ==================================================
   // ====================CONSTRUCTOR====================================
   const player = new Player(
-    '/images/nicolas-cage.gif',
+    'public/images/nicolas-cage.gif',
     'Nicolas Cage',
     10,
     3,
     4,
     3,
-    '/images/player-wins.gif',
-    '/images/player-lose.gif',
+    'public/images/player-wins.gif',
+    'public/images/player-lose.gif',
     'left'
   );
   const david = new Player(
-    '/images/david-hasselhoff.gif',
+    'public/images/david-hasselhoff.gif',
     'David Hasselhoff',
     10,
     4,
     4,
     4,
-    '/images/hoff-wins.gif',
-    '/images/hoff-loses.gif',
+    'public/images/hoff-wins.gif',
+    'public/images/hoff-loses.gif',
     'right'
   );
   const godMode = new Player(
-    '/images/chuck-norris.gif',
+    'public/images/chuck-norris.gif',
     'Chuck Norris',
     10,
     10,
     10,
     10,
-    '/images/chuck-norris-win.gif',
-    '/images/player-give-up.gif',
+    'public/images/chuck-norris-win.gif',
+    'public/images/player-give-up.gif',
     'right'
   );
   player.onLoad();
@@ -181,31 +181,31 @@ $(() => {
   // ===================SOUNDS================================
   bgm();
   function bgm(){
-    const bgmSound = new Audio('/audio/buddha.mp3');
+    const bgmSound = new Audio('public/audio/buddha.mp3');
     bgmSound.volume = 0.5;
     bgmSound.autoplay = true;
     bgmSound.loop = true;
     bgmSound.currentTime = 0;
   }
   function attackSound(){
-    const attackSound = new Audio('/audio/attack.mp3');
+    const attackSound = new Audio('public/audio/attack.mp3');
     attackSound.volume = 0.3;
     attackSound.play();
     attackSound.currentTime = 0;
   }
   function chargeSound(){
-    const chargeSound = new Audio('/audio/charge.mp3');
+    const chargeSound = new Audio('public/audio/charge.mp3');
     chargeSound.volume = 0.3;
     chargeSound.play();
     chargeSound.currentTime = 2;
   }
   function healSound(){
-    const healSound = new Audio('/audio/heal.mp3');
+    const healSound = new Audio('public/audio/heal.mp3');
     healSound.volume = 0.3;
     healSound.play();
     healSound.currentTime = 2;
   }
-  const win = new Audio('/audio/win.mp3');
+  const win = new Audio('public/audio/win.mp3');
   function winSound(){
     win.play();
     win.currentTime = 8;
