@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>WDI Project 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- inject:js -->
   <!-- endinject -->
@@ -12,6 +13,7 @@
 </head>
 <body>
   <header>
+    <div class="topLine"></div>
     <h1>BEAT THE HOFF</h1>
   </header>
   <main class="game">
@@ -19,9 +21,9 @@
     <div class="centerArea">
       <div class="leftFiller">
         <div class="lightBox">
+          <div class="leftLights topLight"></div>
           <div class="leftLights"></div>
-          <div class="leftLights"></div>
-          <div class="leftLights"></div>
+          <div class="leftLights bottomLight"></div>
         </div>
       </div>
       <div class="leftCharacter">
@@ -50,10 +52,10 @@
         <div class="leftDefBar"></div>
         <div class="leftHealBar"></div>
         <div class="middleFiller">V.S.</div>
-        <div class="rightHPBar"></div>
-        <div class="rightAttackBar"></div>
-        <div class="rightDefBar"></div>
         <div class="rightHealBar"></div>
+        <div class="rightDefBar"></div>
+        <div class="rightAttackBar"></div>
+        <div class="rightHPBar"></div>
       </div>
       <div class="rightCharacter">
         <div class="rightPhoto"><img class="rightImg" autoplay loop></div>
@@ -73,27 +75,31 @@
       </div>
       <div class="rightFiller">
         <div class="lightBox">
+          <div class="rightLights topLight"></div>
           <div class="rightLights"></div>
-          <div class="rightLights"></div>
-          <div class="rightLights"></div>
+          <div class="rightLights bottomLight"></div>
         </div>
       </div>
     </div>
     <div class="bottomSpacer">
       <div class="bottomSpacerLeft"></div>
-      <div class="bottomSpacerLeftChar">
+      <div class="bottomSpacerleftChar">
         I think I jump around more when I'm alone.
       </div>
       <div class="bottomSpacerMiddle"></div>
-      <div class="bottomSpacerRightChar">
+      <div class="bottomSpacerrightChar">
         We made sure nobody died on the show. We made sure nobody ever drowned on 'Baywatch'.
       </div>
       <div class="bottomSpacerRight"></div>
     </div>
   </main>
   <footer>
-    MADE WITH &hearts; BY CHRYNX
+    <div class="bottomLine"></div>
+    <div class="bottomSandwich">
+    <div class="bottomNote">MADE WITH &hearts; BY CHRYNX</div>
     <button class="resetButton">RESET</button>
+    </div>
+    <div class="bottomLine"></div>
   </footer>
 </body>
 </html>

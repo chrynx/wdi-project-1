@@ -2,15 +2,6 @@ $(() => {
 
   const $resetButton = $('.resetButton');
   // ==================================================
-  // const leftHPWidth = leftHPValue * 45;
-  // const leftAttackWidth = leftAVValue * 45;
-  // const leftDefWidth = leftDVValue * 45;
-  // const leftHealWidth = leftHVValue * 45;
-  // const rightHPWidth = rightHPValue * 45;
-  // const rightAttackWidth = rightAVValue * 45;
-  // const rightDefWidth = rightDVValue * 45;
-  // const rightHealWidth = rightHVValue * 45;
-
   // ====================CONSTRUCTOR====================================
   const player = new Player(
     '/images/nicolas-cage.gif',
@@ -27,9 +18,9 @@ $(() => {
     '/images/david-hasselhoff.gif',
     'David Hasselhoff',
     10,
-    3,
     4,
-    3,
+    4,
+    4,
     '/images/hoff-wins.gif',
     '/images/hoff-loses.gif',
     'right'
@@ -70,7 +61,7 @@ $(() => {
     this.avBar = $(`.${side}AttackBar`);
     this.dvBar = $(`.${side}DefBar`);
     this.hvBar = $(`.${side}HealBar`);
-    this.text = $(`.bottomSpacer${side}Char`);
+    this.chat = $(`.bottomSpacer${side}Char`);
     this.winPhoto = winPhoto;
     this.losePhoto = losePhoto;
     this.turnOnLights = function(color) {
@@ -98,47 +89,38 @@ $(() => {
       attackSound();
       this.turnOnLights('red');
       if((this.avValue - enemy.dvValue) > 0){
-        enemy.character.toggleClass('animated shake');
         enemy.hpValue = enemy.hpValue - (this.avValue - enemy.dvValue);
-        if(enemy.hpValue <= 0){
-          player.disableButtons(true);
-          winSound();
-          this.zeroWidth(enemy);
-          this.charText('Your attack killed the enemy!');
-          this.charLost(enemy);
-        }
         this.changes(enemy.hpValue, enemy.hpBar);
         this.halfAttack();
         this.changes(this.avValue, this.avBar);
         this.charText(`You attacked with ${((this.avValue * 2) - enemy.dvValue)} damage!`);
-
+        if(enemy.hpValue <= 0){
+          player.disableButtons(true);
+          winSound();
+          this.charText('Your attack killed the enemy!');
+          this.charLost(enemy);
+        }
       } else {
-        this.halfAttack();
-        this.changes(this.avValue, this.avBar);
         this.charText('You did no damage!');
       }
     };
     this.halfAttack = function(){
-      if(norrisIsAlive === false) this.avValue = this.avValue / 2;
-      if(norrisIsAlive === true) console.log('I\'m a god');
+      this.avValue = this.avValue / 2;
     };
     this.charge = function(){
-      this.character.toggleClass('animated tada');
       chargeSound();
       this.turnOnLights('grey');
       this.avValue = this.avValue * 2;
-      if(this.avValue > 10){
+      if(this.avValue >= 10){
         this.avValue = 10;
         this.changes(this.avValue, this.avBar);
         this.charText('Your attack is at maximum!');
-        console.log('this is my avValue afer charge', this.avValue);
       } else {
         this.changes(this.avValue, this.avBar);
-        this.charText('Player charged this turn, doubling his/her attack');
+        this.charText('You charged this turn, doubling your attack');
       }
     };
     this.heal = function(){
-      this.character.toggleClass('animated pulse');
       healSound();
       this.turnOnLights('green');
       this.hpValue = this.hpValue + this.hvValue;
@@ -161,7 +143,7 @@ $(() => {
       this.nameArea.text(this.name);
     };
     this.charText = function(text){
-      this.text.text(text);
+      this.chat.text(text);
 
     };
     this.changes = function(value, bar){
@@ -172,17 +154,12 @@ $(() => {
       this.img.attr('src', this.winPhoto);
       enemy.img.attr('src', this.losePhoto);
     };
-    this.zeroWidth = function(enemy){
-      enemy.hpBar.css('width', '0px');
-      enemy.avBar.css('width', '0px');
-      enemy.dvBar.css('width', '0px');
-      enemy.hvBar.css('width', '0px');
-    };
     this.onLoad = function(){
       this.imageName();
-      this.valueText();
       this.setValues();
       this.setBars();
+      this.valueText();
+
     };
   }
   // =================DANGER ZONE=============================
@@ -193,18 +170,18 @@ $(() => {
   }
   let norrisIsAlive = false;
   function releaseChuckNorris(){
-    setNorris(true);
     godMode.onLoad();
     player.charText('NOPE');
     godMode.charText('Chuck Norris doesn\'t battle, he just allows you to lose');
     godMode.stats.css('font-size', '20px');
+    setNorris(true);
   }
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
   // ===================SOUNDS================================
   bgm();
   function bgm(){
-    const bgmSound = new Audio('/audio/bgm.mp3');
+    const bgmSound = new Audio('/audio/buddha.mp3');
     bgmSound.volume = 0.5;
     bgmSound.autoplay = true;
     bgmSound.loop = true;
@@ -220,34 +197,33 @@ $(() => {
     const chargeSound = new Audio('/audio/charge.mp3');
     chargeSound.volume = 0.3;
     chargeSound.play();
-    chargeSound.currentTime = 0;
+    chargeSound.currentTime = 2;
   }
   function healSound(){
     const healSound = new Audio('/audio/heal.mp3');
     healSound.volume = 0.3;
     healSound.play();
-    healSound.currentTime = 0;
+    healSound.currentTime = 2;
   }
+  const win = new Audio('/audio/win.mp3');
   function winSound(){
-    const winSound = new Audio('/audio/win.mp3');
-    winSound.play();
-    winSound.currentTime = 3;
-
+    win.play();
+    win.currentTime = 8;
   }
   // =====================ENEMY LOGIC============================
   function enemyTurn(enemy){
-    if(enemy.hpValue <= 0){
-      console.log('lost');
-    } else {
-      if(enemy.hpValue < 6){
+    if(enemy.hpValue > 0){
+      if(enemy.hpValue < 5){
         enemy.heal();
-      } else if(enemy.avValue < 4){
+      } else if(enemy.avValue <= 4 && enemy.hpValue > 6){
         enemy.charge();
-      } else if(enemy.hpValue > 5 && enemy.avValue > 5){
-        enemy.attack(player);
+      } else if((enemy.avValue - player.dvValue) <= 0){
+        enemy.charge();
       } else {
         enemy.attack(player);
       }
+    } else {
+      console.log('lost');
     }
   }
   // ========================BUTTONS============================
@@ -268,6 +244,8 @@ $(() => {
   // ========================RESET================================
   $resetButton.on('click', resetAll);
   function resetAll(){
+    win.pause();
+    win.currentTime = 8;
     player.disableButtons(false);
     player.turnOnLights('black');
     david.turnOnLights('black');
@@ -276,9 +254,10 @@ $(() => {
       releaseChuckNorris();
     } else {
       david.onLoad();
-      player.text.text('I think I jump around more when I\'m alone.');
-      david.text.text('We made sure nobody died on the show. We made sure nobody ever drowned on \'Baywatch\'.');
       setNorris(false);
+      david.stats.css('font-size', '25px');
+      player.charText('I think I jump around more when I\'m alone.');
+      david.charText('We made sure nobody died on the show. We made sure nobody ever drowned on \'Baywatch\'.');
     }
   }
 });

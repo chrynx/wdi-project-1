@@ -24,6 +24,7 @@ main {
   background: #0c3855;
   padding: 10px 0;
   margin-bottom: 20px;
+  border-radius: 90px;
 }
 
 /*===================MIDDLE PART OF THE GAME=======================*/
@@ -51,8 +52,11 @@ main {
   height: 100px;
   width: 100px;
   border: 5px solid black;
-  border-radius: 90px;
   background-color: black;
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
 }
 
 // =====================LEFT CHARACTER==============================
@@ -68,29 +72,37 @@ main {
   font-size: 25px;
 }
 .leftPhoto{
-  border: 3px solid black;
+  border: 5px solid black;
   margin: 15px 0 auto 15px;
-  width: 340px;
-  height: 340px;
+  width: 350px;
+  height: 350px;
 }
 .leftImg{
   width: 340px;
   height: 340px;
 }
 .leftName{
-  color: white;
+  color: gold;
   margin: 10px;
   text-align: center;
   border: 2px solid black;
   background: url('/images/stats-bar.jpg');
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
 }
 .leftStats{
-  color: white;
+  color: gold;
   display: flex;
   justify-content: center;
   margin: 10px;
   border: 2px solid black;
   background: url('/images/stats-bar.jpg');
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
 }
 .leftHP{
   margin: auto 10px;
@@ -117,30 +129,51 @@ main {
   margin: auto 10px;
 }
 .leftButtons{
-    margin: 15px 10px;
+    margin: 5px 10px 10px 10px;
     display: flex;
     justify-content: space-around;
 }
 .leftAttackButton{
+  font-size: 16px;
   height: 30px;
   width: 70px;
-  color: white;
-  background: url('/images/buttons.jpg');
-  border-radius: 10px;
+  color: gold;
+  background-color: #0c3855;
+  border: 2px solid gold;
+  border-top: none;
+  border-bottom: none;
+  &:hover {
+    background-color: gold;
+    color: #0c3855;
+  }
 }
 .leftChargeButton{
+  font-size: 16px;
   height: 30px;
   width: 70px;
-  color: white;
-  background: url('/images/buttons.jpg');
-  border-radius: 10px;
+  color: gold;
+  background-color: #0c3855;
+  border: 2px solid gold;
+  border-top: none;
+  border-bottom: none;
+  &:hover {
+    background-color: gold;
+    color: #0c3855;
+  }
 }
 .leftHealButton{
+  font-size: 16px;
   height: 30px;
   width: 70px;
-  color: white;
-  background: url('/images/buttons.jpg');
-  border-radius: 10px;
+  color: gold;
+  background-color: #0c3855;
+  border: 2px solid gold;
+  border-top: none;
+  border-bottom: none;
+  &:hover {
+    background-color: gold;
+    color: #0c3855;
+  }
 }
 
 /*==================MIDDLE PART OF THE GAME==========================*/
@@ -156,53 +189,112 @@ main {
 
 .leftHPBar{
   background: url('/images/health-bar.jpg');
-  padding: 20px 0;
+  padding: 25px 0;
+  margin-bottom: 10px;
+  border-top-right-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 .leftAttackBar{
   background: url('/images/attack-bar.jpg');
-  padding: 20px 0;
+  padding: 5px 0;
+  margin-bottom: 5px;
+  border-top-right-radius: 90px;
+  border-bottom-right-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 .leftDefBar{
   background: url('/images/defense-bar.jpg');
-  padding: 20px 0;
+  padding: 5px 0;
+  margin-bottom: 5px;
+  border-top-right-radius: 90px;
+  border-bottom-right-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 .leftHealBar{
   background: url('/images/heal-bar.jpg');
-  padding: 20px 0;
+  padding: 5px 0;
+  margin-bottom: 5px;
+  border-top-right-radius: 90px;
+  border-bottom-right-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 
 // =======================================================================
 
 .middleFiller{
-  color: #0c3855;
+  border: 5px solid black;
+  background-color: #0c3855;
+  color: gold;
   text-align: center;
   font-family: cursive;
   font-size: 100px;
-  padding: 10px 0;
+  padding: 5px 0;
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
 }
 
 // =======================RIGHT HP BAR==================================
 
 .rightHPBar{
   background: url('/images/health-bar.jpg');
-  padding: 20px 0;
-  max-width: 450px;
+  padding: 25px 0;
+  margin-top: 10px;
   align-self: flex-end;
+  border-bottom-left-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 .rightAttackBar{
   background: url('/images/attack-bar.jpg');
-  padding: 20px 0;
+  padding: 5px 0;
   align-self: flex-end;
+  margin-top: 5px;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 .rightDefBar{
   background: url('/images/defense-bar.jpg');
-  padding: 20px 0;
+  padding: 5px 0;
   align-self: flex-end;
+  margin-top: 5px;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 .rightHealBar{
   background: url('/images/heal-bar.jpg');
-  padding: 20px 0;
+  padding: 5px 0;
   align-self: flex-end;
+  margin-top: 5px;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  border: 5px solid black;
+  &:hover {
+    background: #0c3855;
+  }
 }
 
 /*======================RIGHT PART OF THE GAME=========================*/
@@ -221,32 +313,42 @@ main {
   background: url('/images/character-card.jpg');
 }
 .rightPhoto{
-  background: #000;
-  border: 3px solid black;
+  border: 5px solid black;
   margin: 15px 15px auto 0;
-  width: 340px;
-  height: 340px;
+  width: 350px;
+  height: 350px;
   align-self: flex-end;
   overflow: hidden;
+  &:hover {
+    background: url('/images/david-hasselhoff-alternate.gif');
+  }
 }
 .rightImg{
   height: 340px;
   width: 340px;
 }
 .rightName{
-  color: white;
+  color: gold;
   margin: 10px;
   text-align: center;
   border: 2px solid black;
   background: url('/images/stats-bar.jpg');
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
 }
 .rightStats{
-  color: white;
+  color: gold;
   display: flex;
   justify-content: center;
   margin: 10px;
   border: 2px solid black;
   background: url('/images/stats-bar.jpg');
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
 }
 .rightHP{
   margin: auto 10px;
@@ -310,8 +412,23 @@ main {
   height: 100px;
   width: 100px;
   border: 5px solid black;
-  border-radius: 90px;
   background-color: black;
+  &:hover {
+    background: gold;
+    color: #0c3855;
+  }
+}
+.lightBox{
+  border-radius: 90px;
+  border: 5px solid black;
+}
+.topLight{
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+}
+.bottomLight{
+  border-bottom-left-radius: 90px;
+  border-bottom-right-radius: 90px;
 }
 /*===================BOTTOM PART OF THE GAME===========================*/
 
@@ -326,18 +443,20 @@ main {
 .bottomSpacerLeft{
   width: 10%;
 }
-.bottomSpacerLeftChar{
+.bottomSpacerleftChar{
   width: 27.5%;
   font-family: cursive;
   font-size: 19px;
+  color: #0c3855;
 }
 .bottomSpacerMiddle{
   width: 35%;
 }
-.bottomSpacerRightChar{
+.bottomSpacerrightChar{
   width: 27.5%;
   font-family: cursive;
   font-size: 19px;
+  color: #0c3855;
 }
 .bottomSpacerRight{
   width: 10%;
@@ -345,23 +464,60 @@ main {
 /*=====================================================================*/
 
 header {
-  max-width: 100%;
+  max-width: 1500px;
   margin: 0 auto;
-  text-align: center;
-  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 30px;
 }
 h1 {
   margin: 0;
   color: #0c3855;
 }
+.topLine{
+  width: 1500px;
+  clear: both;
+  background: #0c3855;
+  padding: 10px 0;
+  border-radius: 90px;
+}
 footer {
-  text-align: center;
-  font-size: 50px;
+  color: #0c3855;
+  text-align: left;
+  font-size: 40px;
+  width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.bottomLine {
+  width: 1500px;
+  clear: both;
+  background: #0c3855;;
+  padding: 10px 0;
+  border-radius: 90px;
+}
+.bottomSandwich {
+  display: flex;
+  justify-content: space-between;
+}
+.bottomNote{
+  align-self: center;
 }
 .resetButton{
-  background: url('/images/buttons.jpg') no-repeat;
+  float: right;
+  color: #0c3855;
+  background-color: gold;
   background-size: cover;
-  font-size: 50px;
+  font-size: 40px;
   text-align: left;
-  border-radius: 10px;
+  border: none;
+  border-left: 5px solid #0c3855;
+  border-right: 5px solid #0c3855;
+  margin: 5px 30px 5px 0;
+  &:hover {
+    background-color: #0c3855;
+    color: gold;
+  }
 }
