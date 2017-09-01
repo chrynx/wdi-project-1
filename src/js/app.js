@@ -165,8 +165,6 @@ $(() => {
       this.setValues();
       this.setBars();
       this.valueText();
-      this.charLost;
-
     };
   }
   // =================DANGER ZONE=============================
